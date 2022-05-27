@@ -1,0 +1,4 @@
+{ 
+    "email": "#('raro' + java.util.UUID.randomUUID() + '@academy.com')",  
+    "password": "senha1234"
+}
