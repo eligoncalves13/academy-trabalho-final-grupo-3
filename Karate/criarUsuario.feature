@@ -7,44 +7,31 @@ Feature: Criar usuário
         * def payload = read('requestCriarUsuario.json')
         Given url baseUrl
         And path "users"
-    # VERIFICAR
+
     Scenario Outline: Deve ser possível cadastrar usuário com dados válidos
-        And request { name: "#(nome)", email: "#(email)", password: "#(senha)" }
+        And request { name: "#(nome)", email: "#(java.util.UUID.randomUUID() + email)", password: "#(senha)" }
         When method post
         Then status 201
         And match response contains read('responseCriarUsuario.json')
          Examples:
-            | nome                                                                                                  | email                                                        | senha                          |
-            | Raro                                                                                                  | raro@academy3.com                                            | 1234                           |
-            | Raro Academy                                                                                          | r@c.com                                                      | 123456789123456789123456789123 |
-            | Raro Academy Wacky League Antlez Broke the Stereo Neon Tide Bring Back Honesty Coalition Feedback Ha  | raro@c.com                                                   | 1234                           |
-            | Raro Name                                                                                             | raroceagueantlezbrokestereoneontidebringbackhonesty@raro.com | 1234                           |
+            | nome                                                                                                  | email                    | senha                          |
+            | Raro                                                                                                  | @academy.com             | 1234                           |
+            | Raro Academy                                                                                          | @a.com                   | 123456789123456789123456789123 |
+            | Raro Academy Wacky League Antlez Broke the Stereo Neon Tide Bring Back Honesty Coalition Feedback Ha  | @academy.com             | 1234                           |
+            | Raro Labs                                                                                             | raroacademy1@academy.com | 1234                           |
 
-    Scenario: Não deve ser possível cadastrar usuário sem dados
-        And request { name: "", email: "", password: "" }
+    Scenario Outline: Não deve ser possível cadastrar usuário sem dados
+        And request { name: "#(nome)", email: "#(email)", password: "#(senha)" }
         When method post
         Then status 400
         And match response contains { error: "Bad request." }
+        Examples:
+            | nome | email        | senha |                                                                                     
+            |      | raro@academy | 1234  |                                                                                               
+            | Raro |              | 1234  |                                                                                                        
+            | Raro | raro@academy |       |    
+            |      |              |       |                                                                                                     
 
-    Scenario: Não deve ser possível cadastrar usuário sem nome 
-        And request { name: "", email: "#(payload.email)", password: "#(payload.password)" }
-        When method post
-        Then status 400
-        And match response contains { error: "Bad request." }
-
-    Scenario: Não deve ser possível cadastrar usuário sem email
-        And request { name: "#(payload.name)",  email: "", password: "#(payload.password)" }
-        When method post
-        Then status 400
-        And match response contains { error: "Bad request." }
-
-    Scenario: Não deve ser possível cadastrar usuário sem senha
-        And request { name: "#(payload.name)", email: "#(payload.email)", password: "" }
-        When method post
-        Then status 400
-        And match response contains { error: "Bad request." }
-
-    # VERIFICAR
     Scenario Outline: Não deve ser possível cadastrar usuário com email inválido
         And request { name: "#(payload.name)", email: "#(email)", password: "#(payload.password)" }
         When method post
@@ -78,8 +65,6 @@ Feature: Criar usuário
         Then status 400
         And match response contains { error: "Bad request." }
 
-    #Exploratórios
-    # VERIFICAR
     Scenario Outline: Não deve ser possível cadastrar usuário com nome inválido
         And request { name: "#(nome)", email: "#(payload.email)", password: "#(payload.password)" }
         When method post
@@ -94,17 +79,11 @@ Feature: Criar usuário
             | Ra$Ro |
             | ....  |   
 
-    # VERIFICAR
-    Scenario Outline: Não deve ser possível criar usuário com nome com menos de 4 caracteres válidos
-        And request { name: "#(nome)", email: "#(payload.email)", password: "#(payload.password)" }
+    Scenario: Não deve ser possível criar usuário com nome com menos de 4 caracteres válidos
+        And request { name: "Rar", email: "#(payload.email)", password: "#(payload.password)" }
         When method post
         Then status 400 
         And match response contains { error: "Bad request." }
-        Examples: 
-            | nome  |
-            | Rar   |
-            |  Rar  |
-            |   R   |
 
     Scenario: Não deve ser possível cadastrar usuário com senha com mais de 30 caracteres
         And request { name: "#(payload.nome)", email: "#(payload.email)", password: "1234567891234567891234567891234" }
