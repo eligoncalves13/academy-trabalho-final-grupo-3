@@ -1,0 +1,6 @@
+{
+    "id": "#(response.id)",
+    "name": "#(response.name)",
+    "email": "#(response.email)",
+    "is_admin": "#(response.is_admin)"
+}
