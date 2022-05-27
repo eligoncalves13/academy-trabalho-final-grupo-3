@@ -1,0 +1,82 @@
+[
+    {
+        "active": false,
+        "createdAt": "2022-05-26T17:35:05.818Z",
+        "description": "Lista Compra 1",
+        "id": "127526bb-0550-400e-b6dd-28a4ab55214f",
+        "updatedAt": "2022-05-26T17:35:12.666Z",
+        "userId": "d026704a-21a7-46e9-a224-d72ea490e6bb"
+    },
+    {
+        "active": false,
+        "createdAt": "2022-05-26T17:35:05.818Z",
+        "description": "Lista Compra 2",
+        "id": "127526bb-0550-400e-b6dd-28a4ab55214f",
+        "updatedAt": "2022-05-26T17:35:12.666Z",
+        "userId": "d026704a-21a7-46e9-a224-d72ea490e6bb"
+    },
+    {
+        "active": false,
+        "createdAt": "2022-05-26T17:35:05.818Z",
+        "description": "Lista Compra 3",
+        "id": "127526bb-0550-400e-b6dd-28a4ab55214f",
+        "updatedAt": "2022-05-26T17:35:12.666Z",
+        "userId": "d026704a-21a7-46e9-a224-d72ea490e6bb"
+    },
+    {
+        "active": false,
+        "createdAt": "2022-05-26T17:35:05.818Z",
+        "description": "Lista Compra 4",
+        "id": "127526bb-0550-400e-b6dd-28a4ab55214f",
+        "updatedAt": "2022-05-26T17:35:12.666Z",
+        "userId": "d026704a-21a7-46e9-a224-d72ea490e6bb"
+    },
+    {
+        "active": false,
+        "createdAt": "2022-05-26T17:35:05.818Z",
+        "description": "Lista Compra 5",
+        "id": "127526bb-0550-400e-b6dd-28a4ab55214f",
+        "updatedAt": "2022-05-26T17:35:12.666Z",
+        "userId": "d026704a-21a7-46e9-a224-d72ea490e6bb"
+    },
+    {
+        "active": false,
+        "createdAt": "2022-05-26T17:35:05.818Z",
+        "description": "Lista Compra 6",
+        "id": "127526bb-0550-400e-b6dd-28a4ab55214f",
+        "updatedAt": "2022-05-26T17:35:12.666Z",
+        "userId": "d026704a-21a7-46e9-a224-d72ea490e6bb"
+    },
+    {
+        "active": false,
+        "createdAt": "2022-05-26T17:35:05.818Z",
+        "description": "Lista Compra 7",
+        "id": "127526bb-0550-400e-b6dd-28a4ab55214f",
+        "updatedAt": "2022-05-26T17:35:12.666Z",
+        "userId": "d026704a-21a7-46e9-a224-d72ea490e6bb"
+    },
+    {
+        "active": false,
+        "createdAt": "2022-05-26T17:35:05.818Z",
+        "description": "Lista Compra 8",
+        "id": "127526bb-0550-400e-b6dd-28a4ab55214f",
+        "updatedAt": "2022-05-26T17:35:12.666Z",
+        "userId": "d026704a-21a7-46e9-a224-d72ea490e6bb"
+    },
+    {
+        "active": false,
+        "createdAt": "2022-05-26T17:35:05.818Z",
+        "description": "Lista Compra 9",
+        "id": "127526bb-0550-400e-b6dd-28a4ab55214f",
+        "updatedAt": "2022-05-26T17:35:12.666Z",
+        "userId": "d026704a-21a7-46e9-a224-d72ea490e6bb"
+    },
+    {
+        "active": false,
+        "createdAt": "2022-05-26T17:35:05.818Z",
+        "description": "Lista Compra 10",
+        "id": "127526bb-0550-400e-b6dd-28a4ab55214f",
+        "updatedAt": "2022-05-26T17:35:12.666Z",
+        "userId": "d026704a-21a7-46e9-a224-d72ea490e6bb"
+    }    
+]

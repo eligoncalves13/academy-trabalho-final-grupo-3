@@ -1,0 +1,8 @@
+{
+    "auth": "#(response.auth)",
+    "session": {
+        "token": "#(response.session.token)",
+        "issued": "#(response.session.issued)",
+        "expires": "#(response.session.expires)"
+    }
+}

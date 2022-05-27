@@ -1,0 +1,4 @@
+{ 
+    "description": "#(descricao)", 
+    "items":[{ "name": "Leite", "amount": 1 }]
+}
