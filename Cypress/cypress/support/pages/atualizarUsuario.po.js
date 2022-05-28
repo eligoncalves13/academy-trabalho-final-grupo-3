@@ -1,5 +1,5 @@
 class AtualizarUsuarioPage {
-    inputNameCriar = "input[name='name']";
+    inputName = "input[name='name']";
     inputEmail = "input[name='email']";
     inputSenha = "input[name='password']";
     inputConfirmarSenha = "input[name='confirmPassword']";
@@ -7,6 +7,7 @@ class AtualizarUsuarioPage {
     
 
     acessarLogin() {
+        cy.visit("/logout");
         cy.visit("/login");
     }
 
@@ -14,8 +15,10 @@ class AtualizarUsuarioPage {
         cy.get(".sc-crXcEl.cvtYsR").click()
     }
 
-    preencherNomeCriar(nome) {
-        cy.get(this.inputNameCriar).type(nome)
+    preencherNome(nome) {
+        cy.wait(1000)
+
+        cy.get(this.inputName).clear().type(nome)
     }
 
     preencherEmail(email) {       
@@ -32,11 +35,11 @@ class AtualizarUsuarioPage {
     
     clicarEmRegistrar() {
         cy.contains("button", "Registrar").click()
-        cy.wait(2000)
+        cy.wait(1000)
     }
 
     criarUsuario(nome, email, senha){
-        cy.get(this.inputNameCriar).type(nome);
+        cy.get(this.inputName).type(nome);
         cy.get(this.inputEmail).type(email);
         cy.get(this.inputSenha).type(senha);
         cy.get(this.inputConfirmarSenha).type(senha);
@@ -68,10 +71,6 @@ class AtualizarUsuarioPage {
         cy.get(this.inputName).clear();
     }
 
-    preencherNomeCompleto(nome) {
-        cy.get(this.inputName).type(nome);
-    }
-
     preencherEmail(email) {
         cy.get(this.inputEmail).type(email);
     }
@@ -81,7 +80,7 @@ class AtualizarUsuarioPage {
     }
 
     clicarBotaoConfirma() {
-        cy.contains("button", "Confirmar").click()
+        cy.get("div[class='sc-jdAMXn iMjKmA']>button").click()
     }
 
     atualizarNomeUsuario(tabela){
@@ -93,6 +92,25 @@ class AtualizarUsuarioPage {
     gerarEmailAleatorio() {
         const prefixo = crypto.randomUUID();
         return `email-${prefixo}@email.com`;
+    }
+
+    detelarUsuario() {
+        cy.window().then(window=> {
+            const sessionData = window.sessionStorage.getItem('sessionData')
+            const token = JSON.parse(sessionData).session.token
+
+            cy.wrap(token).should('exist')
+
+            cy.request({
+                url: 'https://lista-compras-api.herokuapp.com/api/v1/cancel-account',
+                method: "delete",
+                headers: {
+                    "X-JWT-Token": token
+                }
+              }).then((resp) => {
+                expect(resp.status).to.eq(204)
+              })
+          }); 
     }
 }
 

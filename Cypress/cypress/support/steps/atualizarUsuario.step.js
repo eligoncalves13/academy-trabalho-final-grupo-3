@@ -2,12 +2,12 @@ import { atualizarUsuarioPage } from "../pages/atualizarUsuario.po";
 import { faker } from '@faker-js/faker'
 
 const user = { 
-    name: faker.name.firstName(),
+    name: faker.name.firstName() + ' ' + faker.name.lastName(),
     email: faker.internet.email().toLowerCase(),
     password: faker.internet.password()
 }
 
-Given ("acessei o sistema Lembra Compras", () => {
+Given("acessei o sistema Lembra Compras", () => {
     atualizarUsuarioPage.acessarLogin();
 });
 
@@ -24,9 +24,15 @@ Then("visualizo o perfil no menu de opções", () => {
 })
 
 When("informo o nome válido para editar o perfil", () => {
-    atualizarUsuarioPage.preencherNomeCompleto(faker.name.firstName());
+    
+    atualizarUsuarioPage.preencherNome(faker.name.firstName() + ' ' + faker.name.lastName());
     atualizarUsuarioPage.clicarBotaoConfirmarAlteracoes();
     atualizarUsuarioPage.clicarBotaoConfirma();
+
+    atualizarUsuarioPage.detelarUsuario();
 })
+
+
+
 
 
