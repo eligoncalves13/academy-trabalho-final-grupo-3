@@ -1,4 +1,4 @@
-import { cadastroPage } from "../pages/CadastroPage.po"
+import { cadastroPage } from "../pages/criarUsuario.po"
 
 Given("acessei o sistema Lembra Compras", () => {
     cadastroPage.visitar();
@@ -63,14 +63,18 @@ Then("visualizo a mensagem de erro {string}", (mensagemErro) => {
     cadastroPage.verificarMensagemErro(mensagemErro);
 });
 
+Then("visualizo a mensagem de email existente {string}", (mensagemErro) => {
+    cadastroPage.verificarMensagemEmailExistente(mensagemErro);
+});
+
 Then("visualizo a tela de login", () => {
     cadastroPage.verficiarAcessoPaginaLogin();
 });
-//VERIFICAR 
+
 Then("visualizo a senha em formato de texto", () => {
-    cadastroPage.verificarSenhaEmFormatoTexto("12345");
+    cadastroPage.verificarSenhaEmFormatoTexto();
 });
 
 Then("visualizo a confirmação de senha em formato de texto", () => {
-    cadastroPage.verificarConfirmarSenhaEmFormatoTexto("12345");
+    cadastroPage.verificarConfirmarSenhaEmFormatoTexto();
 });
