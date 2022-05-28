@@ -3,10 +3,7 @@ class CadastroPage{
     inputEmail = "input[name='email']";
     inputSenha = "input[name='password']";
     inputConfirmarSenha = "input[name='confirmPassword']";
-    // VERIFICAR
-    // svgSenha = "input[name='password'] svg[stroke='currentColor']";
     svgSenha = "svg[stroke='currentColor']"
-    // svgConfirmarSenha = "input[name='confirmPassword'] svg[stroke='currentColor'";
 
     visitar() {
         cy.visit("");
@@ -78,14 +75,17 @@ class CadastroPage{
     verificarMensagemErro(mensagemErro){
         cy.contains(".sc-papXJ", mensagemErro).should("be.visible");
     }; 
-    
-    // VERIFICAR
-    verificarSenhaEmFormatoTexto(senha){
-        cy.get(this.inputSenha, { timeout: 10000 }).should("have.value", senha);
+
+    verificarMensagemEmailExistente(mensagemErro){
+        cy.contains(".go3958317564", mensagemErro).should("be.visible");
     }; 
 
-    verificarConfirmarSenhaEmFormatoTexto(confirmarSenha){
-        cy.get(this.inputConfirmarSenha, { timeout: 10000 }).should("have.value", confirmarSenha);
+    verificarSenhaEmFormatoTexto(){
+        cy.get(this.inputSenha).invoke('attr', 'type').should('include', 'text');
+    }; 
+
+    verificarConfirmarSenhaEmFormatoTexto(){
+        cy.get(this.inputConfirmarSenha).invoke('attr', 'type').should('include', 'text');
     }; 
 }
 
