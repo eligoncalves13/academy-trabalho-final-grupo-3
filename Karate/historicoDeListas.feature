@@ -19,6 +19,14 @@ Feature: Consultar histórico de lista de compras
         And match response == "#array"
         And match each response contains { id: "#uuid", userId: "#uuid", description: "#string", active: "#boolean", createdAt: "#string", updatedAt: "#string" }
 
+    Scenario: Deve ser possível o usuário logado visualizar o histórico vazio
+        Given path "list/history"
+        And header X-JWT-Token = login.responseLogin.session.token
+        When method get
+        Then status 200
+        And match response == "#array"
+        And assert response.length == 0
+
     Scenario: Deve ser possível visualizar o histórico das últimas 10 listas, o nome e a data de criação da lista de compra
         * table lista
             | descricao  | token                             |
@@ -102,7 +110,7 @@ Feature: Consultar histórico de lista de compras
 
     Scenario: Não deve ser possível o usuário logado visualizar o histórico de listas de compras de outros usuários
         * table lista
-            | descricao | token                             |
+            | descricao         | token                             |
             | 'Lista Usuario 1' | login.responseLogin.session.token |
         * call read("hook.feature@CriarLista") lista
         Given path "list/history"

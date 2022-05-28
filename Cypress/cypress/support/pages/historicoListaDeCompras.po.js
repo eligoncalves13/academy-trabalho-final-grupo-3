@@ -5,7 +5,8 @@ class HistoricoListaDeComprasPage {
     }
 
     exibirHistoricoDeListas() {
-        cy.get(".kUIcKA").should('have.length', 10);
+        cy.contains("h2", "Histórico").should("be.visible");
+        cy.get(".kUIcKA").should("have.length", 10);
     }
 
     exibirNomeEDataLista() {
@@ -18,8 +19,13 @@ class HistoricoListaDeComprasPage {
     }
 
     exibirItenslista() {
-        cy.get(".eymWbx").should("be.visible");
+        cy.get(".eymWbx").find("h2").should("be.visible");
         cy.get(".laysmB").should("be.visible");
+    }
+
+    exibirHistoricoVazio() {
+        cy.contains("h2", "Histórico").should("be.visible");
+        cy.get(".fqluPa").children().should("have.length", 0);
     }
 }
 export var historicoListaDeComprasPage = new HistoricoListaDeComprasPage();

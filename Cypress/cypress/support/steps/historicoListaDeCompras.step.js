@@ -34,6 +34,18 @@ When("acesso a funcionalidade histórico", () => {
     historicoListaDeComprasPage.clicarNoHistorico();
 });
 
+When("acesso a funcionalidade histórico vazio", () => {
+    cy.intercept('GET', "api/v1/list", {
+        statusCode: 200,
+        body: []
+    });
+    cy.intercept('GET', "api/v1/list/history", {
+        statusCode: 200,
+        body: []
+    });
+    historicoListaDeComprasPage.clicarNoHistorico();
+});
+
 Then("visualizo o histórico das últimas 10 listas de compras", () => {
     historicoListaDeComprasPage.exibirHistoricoDeListas();
 });
@@ -42,7 +54,7 @@ And("visualizo o nome e a data de criação da lista de compra", () => {
     historicoListaDeComprasPage.exibirNomeEDataLista();
 });
 
-Then("seleciono uma lista de compras", () => {
+And("seleciono uma lista de compras", () => {
     historicoListaDeComprasPage.clicarEmLista();
     cy.intercept('GET', `api/v1/list/history/${lista[0].id}`, {
         statusCode: 200,
@@ -52,4 +64,8 @@ Then("seleciono uma lista de compras", () => {
 
 Then("visualizo os itens da lista de compra", () => {
     historicoListaDeComprasPage.exibirItenslista();
+});
+
+Then("visualizo o histórico vazio", () => {
+    historicoListaDeComprasPage.exibirHistoricoVazio();
 });
