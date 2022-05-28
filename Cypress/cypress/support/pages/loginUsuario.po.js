@@ -3,6 +3,7 @@ class LoginUsuarioPage {
     inputSenhaLogin = "input[name='password']";
 
     acessarLogin() {
+        cy.visit("/logout");
         cy.visit("/login");
     }
 
