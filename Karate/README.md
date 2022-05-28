@@ -37,6 +37,25 @@
 
 - **Mac OS**:
 
+  - Acesse o terminal 
+
+  - Exetuce o comando `cd ~`
+
+  - Execute o comando `vi .bash_profile`
+
+  - Ative o modo de edição de texto teclando a letra `i`
+
+  - Edite o arquivo para configurar as variáveis de ambiente. O arquivo deverá ficar da seguinte forma:
+
+    ```
+    export JAVA_HOME=$(/usr/libexec/java_home)
+    export PATH=$JAVA_HOME/bin:$PATH
+    ```
+
+  - Saia do modo de edição teclando `ESC`
+
+  - Salve o arquivo teclando `:wq` e pressionando enter
+
 - **Linux**:
 
 ### 3. Instalação do Standalone Karate Framework
@@ -46,4 +65,17 @@
 - Localize a última ``release`` disponível contendo a tag ``Latest``
 - Acesse a grade de ``Assets``
 - Faça download do arquivo ``karate-1.2.0.RC1.jar``. ``Obs:`` Atente-se ao fato que o número da versão pode mudar
+
+### 4. Instalação de uma IDE ou Editor de texto
+
+- Recomendado:
+  - VS Code 
+
+## Execução do teste 
+
+- Na pasta que deseja rodas os testes, coloque o arquivo do ``karate-1.2.0.RC1.jar``
+
+- Execute o comando `java -jar karate.jar FEATURE-DESEJADA.feature`
+
+  Ou `java -jar karate.jar *.feature` para rodar todos os arquivos features 
 
