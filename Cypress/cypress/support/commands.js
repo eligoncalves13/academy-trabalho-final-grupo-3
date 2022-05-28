@@ -23,3 +23,7 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('logout', () => {
+    cy.window().its('sessionStorage').invoke('removeItem', 'sessionData');    
+});
