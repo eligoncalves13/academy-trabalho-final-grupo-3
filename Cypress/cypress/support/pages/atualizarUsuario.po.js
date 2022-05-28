@@ -71,10 +71,6 @@ class AtualizarUsuarioPage {
         cy.get(this.inputName).clear();
     }
 
-    preencherEmail(email) {
-        cy.get(this.inputEmail).type(email);
-    }
-
     clicarBotaoConfirmarAlteracoes() {
         cy.contains("button", "Confirmar alterações").click()
     }
@@ -112,6 +108,17 @@ class AtualizarUsuarioPage {
               })
           }); 
     }
+
+    validarMensagem() {
+        cy.contains(".go3958317564", "Informações atualizadas com sucesso!").should("be.visible");
+    }
+
+
+
+
+
+
 }
+
 
 export var atualizarUsuarioPage = new AtualizarUsuarioPage();

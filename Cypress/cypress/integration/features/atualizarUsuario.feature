@@ -10,5 +10,5 @@ Feature: Atualizar usuario
     
     Scenario: Deve ser possível atualizar nome do usuário com sucesso
         When informo o nome válido para editar o perfil
-         
+        Then visualizo a mensagem de sucesso "Informações atualizadas com sucesso!"
     

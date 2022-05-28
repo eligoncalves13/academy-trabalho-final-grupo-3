@@ -29,9 +29,13 @@ When("informo o nome válido para editar o perfil", () => {
     atualizarUsuarioPage.clicarBotaoConfirmarAlteracoes();
     atualizarUsuarioPage.clicarBotaoConfirma();
 
-    atualizarUsuarioPage.detelarUsuario();
+    //atualizarUsuarioPage.detelarUsuario();
 })
 
+Then('visualizo a mensagem de sucesso "Informações atualizadas com sucesso!"', () => {
+    atualizarUsuarioPage.validarMensagem();
+})
+    
 
 
 
