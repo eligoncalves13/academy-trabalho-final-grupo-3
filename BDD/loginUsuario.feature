@@ -40,4 +40,4 @@ Feature: Login do usuário
     Scenario: Deve ser possível acessar a página para cadastrar um novo usuário
         When não informo os dados do usuário
         And acesso a opção registrar um novo usuário
-        Then visualizo o formulário para registar um novo usuário
+        Then visualizo o formulário para registrar um novo usuário

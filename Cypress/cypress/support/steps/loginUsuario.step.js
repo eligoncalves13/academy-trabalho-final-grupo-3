@@ -72,6 +72,6 @@ Then("visualizo a mensagem informando que os dados são inválidos {string}", (m
     loginUsuarioPage.exibirMensagensErroLogin([mensagemErroLogin]);
 });
 
-Then("visualizo o formulário para registar um novo usuário", () => {
+Then("visualizo o formulário para registrar um novo usuário", () => {
     loginUsuarioPage.exibeFormularioParaCadastrarNovoUsuario();
 });
