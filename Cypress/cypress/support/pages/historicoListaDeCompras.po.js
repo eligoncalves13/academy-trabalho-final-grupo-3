@@ -15,7 +15,7 @@ class HistoricoListaDeComprasPage {
     }
 
     clicarEmLista() {
-        cy.get(".kUIcKA").first().click();
+        cy.get(".kUIcKA").first().should("be.visible").click();
     }
 
     exibirItenslista() {
