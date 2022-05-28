@@ -88,3 +88,64 @@ Funcionalidade: Gestão de lista de compras
             | nome_item   | 50                     |
             | quantidade  | 13                     |
             Then visualizo a mensagem positiva "Lista concluída com sucesso!"     
+
+        Scenario: Não deve ser possível atualizar quantidade do item maior que 1000 unidades quando está criando a lista
+            When preencho os campos de criação da lista, acrescentando um item
+            | descrição  | mercado |
+            | nome_item  | milho   |
+            | quantidade | 999     |
+            And acrescento um item com nome já presente 
+            | nome_item  | milho   |
+            | quantidade | 2       |
+            And salvo a lista 
+            Then visualizo a mensagem negativa "Não é permitido incluir mais de 1000 unidades do produto."
+
+        Scenario: Não deve ser possível atualizar quantidade do item maior que 1000 unidades quando a lista já está criada
+            When preencho os campos de criação da lista, acrescentando um item
+            | descrição  | mercado |
+            | nome_item  | milho   |
+            | quantidade | 999     |
+            And salvo a lista 
+            And acrescento um item com nome já presente 
+            | nome_item  | milho   |
+            | quantidade | 2       |
+            Then visualizo a mensagem negativa "Não é permitido incluir mais de 1000 unidades do produto."
+
+        Scenario: Deve ser possível marcar item como concluído
+            When preencho os campos de criação da lista, acrescentando um item
+            | descrição  | mercado |
+            | nome_item  | leite   |
+            | quantidade | 5       |
+            And salvo a lista 
+            And marco o item como concluído 
+            Then o item é riscado da lista 
+
+        Scenario: Deve ser possível finalizar a lista de compras 
+            When preencho os campos de criação da lista, acrescentando um item 
+            | descrição  | mercado |
+            | nome_item  | feijão  |
+            | quantidade | 1       |
+            And salvo a lista 
+            And seleciono para finalizar a lista 
+            And confirmo a finalização da lista 
+            Then visualizo a mensagem positiva "Lista concluída com sucesso!"
+
+        Scenario: O status de concluído do item não deve ser alterado ao recarregar a página 
+            When preencho os campos de criação da lista, acrescentando um item 
+            | descrição  | mercado |
+            | nome_item  | arroz   |
+            | quantidade | 1       |
+            And salvo a lista 
+            And marco o item como concluído 
+            And atualizo a página
+            Then o item deve permanecer riscado 
+
+        Scenario: Deve ser possível fechar o modal de finalizar lista
+            When preencho os campos de criação da lista, acrescentando um item 
+            | descrição  | mercado |
+            | nome_item  | queijo  |
+            | quantidade | 3       |
+            And salvo a lista 
+            And seleciono para finalizar a lista 
+            And seleciono para fechar a modal 
+            Then a modal é fechada sem finalizar a lista 
