@@ -17,12 +17,11 @@ class AtualizarUsuarioPage {
 
     preencherNome(nome) {
         cy.wait(1000)
-
         cy.get(this.inputName).clear().type(nome)
     }
 
     preencherEmail(email) {       
-        cy.get(this.inputEmail).type(email);
+        cy.get(this.inputEmail).clear().type(email);
     }
 
     preencherSenha(senha) {       
@@ -109,14 +108,25 @@ class AtualizarUsuarioPage {
           }); 
     }
 
-    validarMensagem() {
+    validarMensagemSucessoCadastro() {
         cy.contains(".go3958317564", "Informações atualizadas com sucesso!").should("be.visible");
     }
 
+    nomeCemCaracteres() {
+        cy.get(this.inputName).clear().type( "Barnaby Marmaduke Aloysius Benjy Cobweb Dartagnan Egbert Felix Gaspar Humbert Ignatius Jayden Kasper Leroy Reinalts")
+    }
 
+    validarMensagemCaracteresMaximo() {
+        cy.contains("span", "Informe no").should("be.visible");
+    }
 
+    validarMensagemInfomeNome() {
+        cy.contains("span", "Informe seu nome").should("be.visible");
+    }
 
-
+    ValidarMensagemNomeInvalido() {
+        cy.contains("span", "Formato do nome é inválido").should("be.visible");
+    }
 
 }
 

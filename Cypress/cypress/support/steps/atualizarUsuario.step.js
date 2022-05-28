@@ -2,11 +2,12 @@ import { atualizarUsuarioPage } from "../pages/atualizarUsuario.po";
 import { faker } from '@faker-js/faker'
 
 const user = { 
-    name: faker.name.firstName() + ' ' + faker.name.lastName(),
+    name: faker.name.firstName() + ' ' + faker.name.middleName(),
     email: faker.internet.email().toLowerCase(),
     password: faker.internet.password()
 }
 
+//Background
 Given("acessei o sistema Lembra Compras", () => {
     atualizarUsuarioPage.acessarLogin();
 });
@@ -15,28 +16,96 @@ When("informo os dados válidos do usuário para cadastrar e logar no sistema", 
     atualizarUsuarioPage.clicarBotaoRegistrase();
     atualizarUsuarioPage.criarUsuario(user.name, user.email, user.password, user.password);
     atualizarUsuarioPage.clicarEmRegistrar();
+    cy.wait(1000)
     atualizarUsuarioPage.preencherLogin(user.email, user.password);
 });
 
 Then("visualizo o perfil no menu de opções", () => {
     atualizarUsuarioPage.clicarOpcoes();
     atualizarUsuarioPage.clicarPerfil();
+    cy.wait(1000);
 })
 
+//Atualizar nome do usuário com sucesso
 When("informo o nome válido para editar o perfil", () => {
     
     atualizarUsuarioPage.preencherNome(faker.name.firstName() + ' ' + faker.name.lastName());
     atualizarUsuarioPage.clicarBotaoConfirmarAlteracoes();
     atualizarUsuarioPage.clicarBotaoConfirma();
-
-    //atualizarUsuarioPage.detelarUsuario();
 })
 
 Then('visualizo a mensagem de sucesso "Informações atualizadas com sucesso!"', () => {
-    atualizarUsuarioPage.validarMensagem();
+    atualizarUsuarioPage.validarMensagemSucessoCadastro();
+    atualizarUsuarioPage.detelarUsuario();
+})
+
+//Atualizar nome com mais de 100 caracteres
+When("informo o nome com mais de 100 caracteres", () => {
+    atualizarUsuarioPage.nomeCemCaracteres();
+    
+})
+
+Then('visualizo a mensagem de erro "Informe no máximo 100 letras no seu nome"', () => {
+    atualizarUsuarioPage.clicarBotaoConfirmarAlteracoes();
+    atualizarUsuarioPage.validarMensagemCaracteresMaximo();
+    atualizarUsuarioPage.detelarUsuario();
+})
+
+//Atualizar usuário com o campo nome vazio
+When("não informo nome do usuário", () => {
+    atualizarUsuarioPage.apagarNome();
+})    
+
+Then('visualizo a mensagem de erro "Informe seu nome"', () => {
+    atualizarUsuarioPage.clicarBotaoConfirmarAlteracoes();
+    atualizarUsuarioPage.validarMensagemInfomeNome();
+    atualizarUsuarioPage.detelarUsuario();
+})
+
+//Atualizar nome do usuário com caracteres especiais
+When("informo o nome do usuário", (tabela) => {
+    atualizarUsuarioPage.apagarNome();
+    var dado = tabela.rowsHash();
+    atualizarUsuarioPage.preencherNome(dado.nome)
+})
+
+Then('visualizo a mensagem de erro "Formato do nome é inválido."', () => {
+    atualizarUsuarioPage.clicarBotaoConfirmarAlteracoes();
+    atualizarUsuarioPage.ValidarMensagemNomeInvalido();
+    atualizarUsuarioPage.detelarUsuario();
+})
+
+//Atualizar email do usuário com sucesso
+When("informo o email válido para editar o perfil", () => {
+    atualizarUsuarioPage.preencherEmail(faker.internet.email());
+    atualizarUsuarioPage.clicarBotaoConfirmarAlteracoes();
+    atualizarUsuarioPage.clicarBotaoConfirma();
+})
+
+Then('visualizo a mensagem de sucesso "Informações atualizadas com sucesso!"', () => {
+    atualizarUsuarioPage.validarMensagemSucessoCadastro();
+    atualizarUsuarioPage.detelarUsuario();
+})
+
+//Atualizar usuário com email já cadastrado
+When("Informo e-mail já utilizado por outro usuário", () => {
+    const outroUsuario = { 
+        name: faker.name.firstName() + ' ' + faker.name.middleName(),
+        email: faker.internet.email().toLowerCase(),
+        password: faker.internet.password()
+    }
+    
+    cy.request({
+        url: 'https://lista-compras-api.herokuapp.com/api/v1/users',
+        method: "post",
+        body: outroUsuario
+    }).then((resp) => {
+        expect(resp.status).to.eq(201)
+    })
+    cy.wait(2000)
+    atualizarUsuarioPage.preencherEmail(outroUsuario.email);
+    atualizarUsuarioPage.clicarBotaoConfirmarAlteracoes();
+    atualizarUsuarioPage.clicarBotaoConfirma();
+    
 })
     
-
-
-
-
