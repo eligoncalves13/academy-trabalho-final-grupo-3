@@ -1,11 +1,15 @@
+import { faker } from '@faker-js/faker';
 import { loginUsuarioPage } from "../pages/loginUsuario.po";
 import loginResposta from "../../fixtures/token.json";
-import { faker } from '@faker-js/faker'
 
 const login = {
     emailLogin: faker.internet.email().toLowerCase(),
     senhaLogin: faker.internet.password()
 }
+
+beforeEach(() => {
+    cy.logout();
+});
 
 Given("acessei o sistema Lembra Compras", () => {
     loginUsuarioPage.acessarLogin();
@@ -57,6 +61,10 @@ And("acesso a opção registrar um novo usuário", () => {
 });
 
 Then("visualizo as demais funcionalidades do sistema", () => {
+    cy.intercept('GET', "api/v1/list", {
+        statusCode: 200,
+        body: []
+    });
     loginUsuarioPage.exibePaginaCriarLista();
 });
 
