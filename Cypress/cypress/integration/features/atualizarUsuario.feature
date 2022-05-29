@@ -9,23 +9,23 @@ Feature: Atualizar usuario
         When informo os dados válidos do usuário para cadastrar e logar no sistema
         Then visualizo o perfil no menu de opções
 
-   @ignore 
+   
     Scenario: Deve ser possível atualizar nome do usuário com sucesso
         When informo o nome válido para editar o perfil
         Then visualizo a mensagem de sucesso "Informações atualizadas com sucesso!"
 
-     @ignore
+    
     Scenario: Não deve ser possível editar usuário com dados inválidos
         When informo o nome com 101 caracteres
         | nome | Barnaby Marmaduke Aloysius Benjy Cobweb Dartagnan Egbert Felix Gaspar Humbert Ignatius Jayden Kasper Leroy Reinalts |
         Then visualizo a mensagem de erro "Informe no máximo 100 letras no seu nome"
 
-     @ignore
+     
      Scenario: Não deve ser possível salvar usuário sem nome
         When não informo nome do usuário
         Then visualizo a mensagem de erro "Informe seu nome"
 
-     @ignore
+     
     Scenario Outline: Não deve ser possível salvar nome com números ou caracteres especiais
         When informo o nome do usuário
             | nome | <nome> |
@@ -41,7 +41,7 @@ Feature: Atualizar usuario
         When informo o email válido para editar o perfil
         Then visualizo a mensagem de sucesso "Informações atualizadas com sucesso!"
 
-    @ignore
+    
     Scenario: Não deve ser possível cadastrar email utilizado por outro usuário
         When Informo e-mail já utilizado por outro usuário
         Then visualizo a mensagem de erro "Informações atualizadas com sucesso!"
