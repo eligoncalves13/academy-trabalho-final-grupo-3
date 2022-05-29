@@ -1,4 +1,4 @@
-# Testes automatizados de Frontend utilizando o framework Cypress
+# Testes automatizados de Frontend com framework Cypress
 
 ## Configurando ambiente
 
@@ -24,28 +24,26 @@ node --version
 npm --version
 ```
 
-## 2. Executando os testes no Cypress
+## 2. Execução dos testes
 
-1. No GitHub baixar o projeto em formato .ZIP (code -> Download ZIP)
-
-2. Extraia o .ZIP em uma pasta no computador;
-
-3. Abra o VS Code;
-
-4. Abra a pasta onde foi extraido o .ZIP no VS Code;
-
-5. Abra o terminal dentro do VS Code;
-
-6. Execute o comando abaixo através do terminal do VS Code, para entrar na pasta Cypress;
+1. Clone esse repositório
 ```sh
-cd Cypress
+git clone https://github.com/eligoncalves13/academy-trabalho-final-grupo-3.git
 ```
-7. Execute o comando abaixo através do terminal do VS Code, para instalar as dependências;
+2. Entre na pasta do projeto;
+```sh
+cd academy-trabalho-final-grupo-3/Cypress
+```
+3. Execute o comando abaixo para instalar as dependências;
 ```sh
 npm install
 ```
-8. Execute o comando abaixo através do terminal do VS Code, para abrir o cypress;
+4. Execute o comando abaixo para abrir o cypress;
 ```sh
 npx cypress open
 ```
-9. Aguarde abrir o Cypress para executar os testes
+5. Aguarde abrir o Cypress
+
+6. Para executar apenas uma feature, escolha e clique sobre a feature
+
+7. Para executar todas as features, clique em **Run 5 integration specs**
