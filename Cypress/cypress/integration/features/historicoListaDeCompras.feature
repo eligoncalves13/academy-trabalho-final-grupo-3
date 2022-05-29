@@ -4,7 +4,7 @@ Feature: Histórico de lista de compras
     Desejo consultar minhas últimas listas de compra
     Para visualizar minhas últimas compras
 
-    Background: Acessar o sistema, efetuar login e acessar histórico de lista de compra
+    Background: Acessar o sistema, efetuar login
         Given acessei o sistema Lembra Compras
         And informo os dados válidos para efetuar o login
 
