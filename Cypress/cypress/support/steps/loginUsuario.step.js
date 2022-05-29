@@ -1,3 +1,4 @@
+import { Before } from "cypress-cucumber-preprocessor/steps";
 import { faker } from '@faker-js/faker';
 import { loginUsuarioPage } from "../pages/loginUsuario.po";
 import loginResposta from "../../fixtures/token.json";
@@ -7,7 +8,7 @@ const login = {
     senhaLogin: faker.internet.password()
 }
 
-beforeEach(() => {
+Before({ tags: "@logout" }, () => {
     cy.logout();
 });
 
