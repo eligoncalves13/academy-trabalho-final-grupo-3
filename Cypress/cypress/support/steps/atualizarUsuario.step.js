@@ -40,9 +40,10 @@ Then('visualizo a mensagem de sucesso "Informações atualizadas com sucesso!"',
 })
 
 //Atualizar nome com mais de 100 caracteres
-When("informo o nome com mais de 100 caracteres", () => {
-    atualizarUsuarioPage.nomeCemCaracteres();
-    
+When("informo o nome com 101 caracteres", (tabela) => {
+    var dados = tabela.rowsHash();
+    atualizarUsuarioPage.preencherNome(dados.nome);
+  
 })
 
 Then('visualizo a mensagem de erro "Informe no máximo 100 letras no seu nome"', () => {
@@ -148,7 +149,7 @@ Then('visualizo a mensagem de erro "Informe seu e-mail"', () => {
 When("informo o email do usuário", (tabela) => {
     atualizarUsuarioPage.apagarEmail();
     var dado = tabela.rowsHash();
-    atualizarUsuarioPage.preencherEmail(dado.Email)
+    atualizarUsuarioPage.preencherEmail(dado.email)
 })
 
 Then('visualizo a mensagem de erro "Formato de e-mail inválido."', () => {
@@ -169,7 +170,7 @@ Then("visualizo meu histórico de lista de compras", () => {
 
 //Validar botão lita
 When("seleciono a opção lista", () => {
-    atualizarUsuarioPage.ValidarLista();
+    atualizarUsuarioPage.validarLista();
 })
 
 Then("visualizo minha lista de compras", () => {
@@ -186,4 +187,5 @@ When("seleciono a opção sair", () => {
 
 Then("visualizo a tela de login", () => {
     atualizarUsuarioPage.telaLogin();
+    
 })

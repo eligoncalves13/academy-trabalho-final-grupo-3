@@ -112,9 +112,6 @@ class AtualizarUsuarioPage {
         cy.contains(".go3958317564", "Informações atualizadas com sucesso!").should("be.visible");
     }
 
-    nomeCemCaracteres() {
-        cy.get(this.inputName).clear().type( "Barnaby Marmaduke Aloysius Benjy Cobweb Dartagnan Egbert Felix Gaspar Humbert Ignatius Jayden Kasper Leroy Reinalts")
-    }
 
     validarMensagemCaracteresMaximo() {
         cy.contains("span", "Informe no").should("be.visible");
@@ -156,8 +153,8 @@ class AtualizarUsuarioPage {
         cy.contains("h2", "Histórico").should("be.visible");
     }
 
-    ValidarLista() {
-        cy.get("a[href='/lista']").click();
+    validarLista() {
+        cy.contains("a[href='/lista']", "Lista").click();
     }
 
     headerLista() {
