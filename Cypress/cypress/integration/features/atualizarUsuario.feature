@@ -36,6 +36,17 @@ Feature: Atualizar usuario
         When informo o email válido para editar o perfil
         Then visualizo a mensagem de sucesso "Informações atualizadas com sucesso!"
 
+    @ignore
     Scenario: Não deve ser possível cadastrar email utilizado por outro usuário
         When Informo e-mail já utilizado por outro usuário
         Then visualizo a mensagem de erro "Informações atualizadas com sucesso!"
+
+    @ignore
+    Scenario: Não deve ser possível atualizar E-mail com mais de 60 caracteres
+        When informo o email com os dados inválidos
+        Then visualizo a mensagem de erro "Informe no máximo 60 caracteres."
+
+    @ignore
+    Scenario: Não aparece a mensagem no campo email "informe no máximo 60 caracteres"
+        When informo o email com 101 caracteres
+        Then visualizo a mensagem de erro no campo email "Informe no máximo 60 caracteres."    

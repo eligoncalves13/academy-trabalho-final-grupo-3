@@ -108,4 +108,29 @@ When("Informo e-mail já utilizado por outro usuário", () => {
     atualizarUsuarioPage.clicarBotaoConfirma();
     
 })
+
+// Atualizar usuário com mais de 60 caracteres
+When("informo o email com os dados inválidos", () => {
+    const email =  Date.now() + "sdnbfasdasdasdasdasdasdadasdasdbfasdbfasdf@f.com"
+    atualizarUsuarioPage.preencherEmail(email);
+})
+
+Then('visualizo a mensagem de erro "Informe no máximo 60 caracteres."', () => {
+    atualizarUsuarioPage.clicarBotaoConfirmarAlteracoes();
+    atualizarUsuarioPage.clicarBotaoConfirma();
+    atualizarUsuarioPage.validarMensagemCaracteresMaximo();
+    atualizarUsuarioPage.detelarUsuario();
+})
+
+// Não aparece a mensagem no campo email "informe no máximo 60 caracteres"
+When("informo o email com 101 caracteres", () => {
+    const email =  Date.now() + "sdnbfasdasaaaaaaaaaaaaadasaaaaaaasdaaaaaaaadaaaaadadadasdasdasdadasdasdbfasdbfasdf@f.com"
+    atualizarUsuarioPage.preencherEmail(email);
+})
+
+Then('visualizo a mensagem de erro no campo email "Informe no máximo 60 caracteres."', () => {
+    atualizarUsuarioPage.clicarBotaoConfirmarAlteracoes();
+    atualizarUsuarioPage.validarMensagemSessentaCarac();
+    atualizarUsuarioPage.detelarUsuario();
+})
     

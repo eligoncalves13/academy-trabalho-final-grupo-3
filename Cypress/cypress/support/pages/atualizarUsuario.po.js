@@ -127,8 +127,14 @@ class AtualizarUsuarioPage {
     ValidarMensagemNomeInvalido() {
         cy.contains("span", "Formato do nome é inválido").should("be.visible");
     }
+    
+    emailGrande() {
+        cy.get(this.inputEmail).clear().type(email)
+    }
+    
+    validarMensagemSessentaCarac() {
+        cy.contains("span", "Informe no máximo 60 caracteres.").should("be.visible");
+    }
 
 }
-
-
 export var atualizarUsuarioPage = new AtualizarUsuarioPage();

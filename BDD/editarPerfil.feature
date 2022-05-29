@@ -32,13 +32,8 @@ Feature: Editar perfil
         Then visualizo a mensagem de sucesso "Informações atualizadas com sucesso!"
 
     Scenario: Não deve ser possível cadastrar email utilizado por outro usuário
-        And clico no campo E-mail
-        Then Atualizo o email do usuário com um e-mail já cadastrado
-            | Email | joventina@gmail.com |
-        And clico em confirmar alterações
-        And clico em confirmar novamente
-        Then Aparece a mensagem seguinte mensagem
-            | Mensagem | Email já cadastrado |
+        When Informo e-mail já utilizado por outro usuário
+        Then visualizo a mensagem de erro "Informações atualizadas com sucesso!"
 
     Scenario: Não é possivel atualizar E-mail com mais de 60 caracteres
         And clico no campo E-mail
