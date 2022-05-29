@@ -136,5 +136,42 @@ class AtualizarUsuarioPage {
         cy.contains("span", "Informe no máximo 60 caracteres.").should("be.visible");
     }
 
+    apagarEmail() {
+        cy.get(this.inputEmail).clear();
+    }
+
+    validarMensagemInfomeEmail() {
+        cy.contains("span", "Informe seu e-mail").should("be.visible");
+    }
+
+    ValidarMensagemEmailInvalido() {
+        cy.contains("span", "Formato de e-mail inválido.").should("be.visible");
+    }
+
+    validarHistorico() {
+        cy.get("a[href='/historico']").click();
+    }
+
+    headerHistorico() {
+        cy.contains("h2", "Histórico").should("be.visible");
+    }
+
+    ValidarLista() {
+        cy.get("a[href='/lista']").click();
+    }
+
+    headerLista() {
+        cy.contains("h2", "Dê um nome para sua lista").should("be.visible");
+    }
+
+    clicarEmSair() {
+        cy.get("a[href='/logout']").click();
+    }
+
+    telaLogin() {
+        cy.contains(" h1", "Entre e saiba mais").should("be.visible");
+    }
 }
+
+
 export var atualizarUsuarioPage = new AtualizarUsuarioPage();

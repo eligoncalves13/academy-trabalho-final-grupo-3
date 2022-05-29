@@ -13,7 +13,7 @@ Feature: Atualizar usuario
         When informo o nome válido para editar o perfil
         Then visualizo a mensagem de sucesso "Informações atualizadas com sucesso!"
 
-     @ignore
+    @ignore 
     Scenario: Não deve ser possível editar usuário com dados inválidos
         When informo o nome os dados inválidos
         Then visualizo a mensagem de erro "Informe no máximo 100 letras no seu nome"
@@ -23,7 +23,7 @@ Feature: Atualizar usuario
         When não informo nome do usuário
         Then visualizo a mensagem de erro "Informe seu nome"
 
-    @ignore
+   @ignore
     Scenario: Não deve ser possível salvar nome com números ou caracteres especiais
         When informo o nome do usuário
             | nome | @na Luiza |
@@ -31,22 +31,57 @@ Feature: Atualizar usuario
             | nome | Ana Lu-iza |
         Then visualizo a mensagem de erro "Formato do nome é inválido."
 
-    @ignore
+   @ignore
     Scenario: Deve ser possível atualizar E-mail do usuário com sucesso
         When informo o email válido para editar o perfil
         Then visualizo a mensagem de sucesso "Informações atualizadas com sucesso!"
 
-    @ignore
+   @ignore
     Scenario: Não deve ser possível cadastrar email utilizado por outro usuário
         When Informo e-mail já utilizado por outro usuário
         Then visualizo a mensagem de erro "Informações atualizadas com sucesso!"
 
-    @ignore
+   @ignore
     Scenario: Não deve ser possível atualizar E-mail com mais de 60 caracteres
         When informo o email com os dados inválidos
         Then visualizo a mensagem de erro "Informe no máximo 60 caracteres."
 
-    @ignore
+   @ignore
     Scenario: Não aparece a mensagem no campo email "informe no máximo 60 caracteres"
         When informo o email com 101 caracteres
-        Then visualizo a mensagem de erro no campo email "Informe no máximo 60 caracteres."    
+        Then visualizo a mensagem de erro no campo email "Informe no máximo 60 caracteres."
+
+    @ignore
+    Scenario: Não deve ser possivel salvar usuário sem email
+        When não informo email do usuário
+        Then visualizo a mensagem de erro "Informe seu e-mail"
+
+    @ignore
+    Scenario: Não deve ser possível salvar com E-mail inválido 
+        When informo o email do usuário
+            | Email  | joventinagmail.com   |
+            | Email | joventina@gmail       |
+            | Email | joventina @gmail.com  |
+            | Email | joventina@gmail.com'  |
+            | Email | joventina@gmail.com"  |
+            | Email | joventina&@gmail.com  |
+            | Email | joventina#@gmail.com  |
+            | Email | joventina=@gmail.com  |
+            | Email | joventina-@gmail.com  |
+            | Email | joventina+@gmail.com  |
+            | Email | joventina,@gmail.com  |
+        Then visualizo a mensagem de erro "Formato de e-mail inválido."
+
+    @ignore
+    Scenario: deve ser possível selecionar o botão histórico
+        When seleciono a opção histórico
+        Then visualizo meu histórico de lista de compras
+
+    @ignore
+    Scenario: deve ser possível selecionar o botão lista
+        When seleciono a opção lista
+        Then visualizo minha lista de compras
+
+    Scenario: deve ser possível selecionar o botão sair
+        When seleciono a opção sair
+        Then visualizo a tela de login

@@ -35,28 +35,17 @@ Feature: Editar perfil
         When Informo e-mail já utilizado por outro usuário
         Then visualizo a mensagem de erro "Informações atualizadas com sucesso!"
 
-    Scenario: Não é possivel atualizar E-mail com mais de 60 caracteres
-        And clico no campo E-mail
-        Then Atualizo o email do usuário 
-            | Email | joventaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@gmail.com |
-            Then Aparece a mensagem seguinte mensagem
-            | Mensagem | Informe no máximo 100 caracteres. |
+    Scenario: Não aparece a mensagem no campo email "informe no máximo 60 caracteres"
+        When informo o email com 101 caracteres
+        Then visualizo a mensagem de erro no campo email "Informe no máximo 60 caracteres."
 
-    Scenario: Não é possivel salvar usuário sem email
-        And clico no campo E-mail
-        When Deleto o E-mail cadastrado 
-        Then Aparece a mensagem seguinte mensagem
-            | Mensagem | Informe seu e-mail |
+     Scenario: Não deve ser possivel salvar usuário sem email
+        When não informo email do usuário
+        Then visualizo a mensagem de erro "Informe seu e-mail"
 
-    Scenario Outline: Não é possível salvar com E-mail inválido
-        And clico no campo E-mail
-        When Atualizo o email do usuário 
-        Then Aparece a mensagem seguinte mensagem
-            | Mensagem | Formato de e-mail inválido. |
-
-        Examples:
-            | Email | <Email>               |
-            | Email | joventinagmail.com    |
+    Scenario: Não deve ser possível salvar com E-mail inválido 
+        When informo o email do usuário
+            | Email  | joventinagmail.com   |
             | Email | joventina@gmail       |
             | Email | joventina @gmail.com  |
             | Email | joventina@gmail.com'  |
@@ -67,17 +56,17 @@ Feature: Editar perfil
             | Email | joventina-@gmail.com  |
             | Email | joventina+@gmail.com  |
             | Email | joventina,@gmail.com  |
-            | Email | joventina..@gmail.com |
+        Then visualizo a mensagem de erro "Formato de e-mail inválido."
+
             
-    Scenario: Validar o botão histórico
-        When clico no botão hitórico
-        Then aparece meu histórico de lista de compras
+     Scenario: deve ser possível selecionar o botãos histórico
+        When seleciono a opção histórico
+        Then visualizo meu histórico de lista de compras
 
-    Scenario: Validar o botão lista
-        When clico no botão lista
-        Then aparece minha lista de compras
+    Scenario: deve ser possível selecionar o botão lista
+        When seleciono a opção lista
+        Then visualizo minha lista de compras
 
-    Scenario: Validar botão sair
-        When Clico no menu de opções
-        And clico no sair
-        Then Saio da conta 
+    Scenario: deve ser possível selecionar o botão sair
+        When seleciono a opção sair
+        Then visualizo a tela de login

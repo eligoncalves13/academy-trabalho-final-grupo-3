@@ -134,3 +134,56 @@ Then('visualizo a mensagem de erro no campo email "Informe no máximo 60 caracte
     atualizarUsuarioPage.detelarUsuario();
 })
     
+// Atualizar usuário com o campo email vazio
+When("não informo email do usuário", () => {
+    atualizarUsuarioPage.apagarEmail();
+})
+
+Then('visualizo a mensagem de erro "Informe seu e-mail"', () => {
+    atualizarUsuarioPage.clicarBotaoConfirmarAlteracoes();
+    atualizarUsuarioPage.validarMensagemInfomeEmail();
+})
+
+// Atualizar usuário com email inválido
+When("informo o email do usuário", (tabela) => {
+    atualizarUsuarioPage.apagarEmail();
+    var dado = tabela.rowsHash();
+    atualizarUsuarioPage.preencherEmail(dado.Email)
+})
+
+Then('visualizo a mensagem de erro "Formato de e-mail inválido."', () => {
+    atualizarUsuarioPage.clicarBotaoConfirmarAlteracoes();
+    atualizarUsuarioPage.ValidarMensagemEmailInvalido();
+    atualizarUsuarioPage.detelarUsuario();
+})
+
+//Validar botão histórico
+When("seleciono a opção histórico", () => {
+    atualizarUsuarioPage.validarHistorico();
+})
+
+Then("visualizo meu histórico de lista de compras", () => {
+    atualizarUsuarioPage.headerHistorico();
+    atualizarUsuarioPage.detelarUsuario();
+})
+
+//Validar botão lita
+When("seleciono a opção lista", () => {
+    atualizarUsuarioPage.ValidarLista();
+})
+
+Then("visualizo minha lista de compras", () => {
+    atualizarUsuarioPage.headerLista();
+    atualizarUsuarioPage.detelarUsuario();
+})
+
+//Validar Logout
+When("seleciono a opção sair", () => {
+    atualizarUsuarioPage.clicarOpcoes();
+    atualizarUsuarioPage.clicarEmSair();
+    atualizarUsuarioPage.detelarUsuario();
+})
+
+Then("visualizo a tela de login", () => {
+    atualizarUsuarioPage.telaLogin();
+})
