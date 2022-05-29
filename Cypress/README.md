@@ -1,10 +1,8 @@
 # Testes automatizados de Frontend com framework Cypress
 
-## Configurando ambiente
+Testes automatizados de Frontend do sistema web [Lembra Compras](https://academy-lembra-compras.herokuapp.com) com o framework Cypress.
 
-Primeiro é preciso instalar o [Node](https://nodejs.org/en/download/).
-
-## 1. Instalação NodeJS: 
+## 1. Instalação NodeJS
 
 1. Acesse a página de [download do NodeJS](https://nodejs.org/en/download/);
 
