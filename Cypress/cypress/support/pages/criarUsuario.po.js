@@ -3,10 +3,7 @@ class CadastroPage{
     inputEmail = "input[name='email']";
     inputSenha = "input[name='password']";
     inputConfirmarSenha = "input[name='confirmPassword']";
-    // VERIFICAR
-    // svgSenha = "input[name='password'] svg[stroke='currentColor']";
     svgSenha = "svg[stroke='currentColor']"
-    // svgConfirmarSenha = "input[name='confirmPassword'] svg[stroke='currentColor'";
 
     visitar() {
         cy.visit("");
@@ -48,7 +45,7 @@ class CadastroPage{
         cy.get(this.inputConfirmarSenha).type(confirmarSenha);
     };
 
-    preencherFormulario(nome, email,senha, confirmarSenha){
+    preencherFormulario(nome, email, senha, confirmarSenha){
         if(nome != ""){
             this.preencherNome(nome);
         }
@@ -62,12 +59,11 @@ class CadastroPage{
             this.preencherConfirmarSenha(confirmarSenha);
         }
     };
-
-    verficiarAcessoPaginaCadastro(){
+    verificarAcessoPaginaCadastro(){
         cy.url().should("equal", "https://academy-lembra-compras.herokuapp.com/register");
     };
 
-    verficiarAcessoPaginaLogin(){
+    verificarAcessoPaginaLogin(){
         cy.url().should("equal", "https://academy-lembra-compras.herokuapp.com/login");
     };
 
@@ -76,16 +72,21 @@ class CadastroPage{
     };
     
     verificarMensagemErro(mensagemErro){
-        cy.contains(".sc-papXJ", mensagemErro).should("be.visible");
-    }; 
-    
-    // VERIFICAR
-    verificarSenhaEmFormatoTexto(senha){
-        cy.get(this.inputSenha, { timeout: 10000 }).should("have.value", senha);
+        mensagemErro.forEach((mensagem, index) => {
+            cy.get(".sc-papXJ").eq(index).contains(mensagem).should("be.visible");
+        });    
     }; 
 
-    verificarConfirmarSenhaEmFormatoTexto(confirmarSenha){
-        cy.get(this.inputConfirmarSenha, { timeout: 10000 }).should("have.value", confirmarSenha);
+    verificarMensagemEmailExistente(mensagemErro){
+        cy.contains(".go3958317564", mensagemErro).should("be.visible");
+    }; 
+
+    verificarSenhaEmFormatoTexto(){
+        cy.get(this.inputSenha).invoke('attr', 'type').should('include', 'text');
+    }; 
+
+    verificarConfirmarSenhaEmFormatoTexto(){
+        cy.get(this.inputConfirmarSenha).invoke('attr', 'type').should('include', 'text');
     }; 
 }
 
