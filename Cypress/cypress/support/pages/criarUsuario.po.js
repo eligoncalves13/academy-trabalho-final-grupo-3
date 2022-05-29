@@ -45,7 +45,6 @@ class CadastroPage{
         cy.get(this.inputConfirmarSenha).type(confirmarSenha);
     };
 
-    // Verificar 
     preencherFormulario(nome, email, senha, confirmarSenha){
         if(nome != ""){
             this.preencherNome(nome);
@@ -60,7 +59,6 @@ class CadastroPage{
             this.preencherConfirmarSenha(confirmarSenha);
         }
     };
-
     verificarAcessoPaginaCadastro(){
         cy.url().should("equal", "https://academy-lembra-compras.herokuapp.com/register");
     };
@@ -73,15 +71,10 @@ class CadastroPage{
         cy.contains(".go3958317564", mensagemSucesso).should("be.visible");
     };
     
-    // Verificar 
     verificarMensagemErro(mensagemErro){
-        if(mensagemErro.includes(";")){
-            mensagemErro.split(";").forEach((mensagem, index) => {
-                cy.get(".sc-papXJ").eq(index).contains(mensagem).should("be.visible");
-            });    
-        }else{
-            cy.contains(".sc-papXJ", mensagemErro).should("be.visible");
-        }
+        mensagemErro.forEach((mensagem, index) => {
+            cy.get(".sc-papXJ").eq(index).contains(mensagem).should("be.visible");
+        });    
     }; 
 
     verificarMensagemEmailExistente(mensagemErro){
