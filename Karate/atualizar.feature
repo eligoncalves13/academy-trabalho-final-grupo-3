@@ -57,29 +57,38 @@ Feature: Atualizar usuário
         Then status 400
         And match response contains { error: "Bad request." }
         Examples:
-                | emailUsuario          | 
-                | joventinagmail.com    |
-                | joventina@gmail       |
-                | joventina @gmail.com  |
-                | joventina@gmail.com'  |
-                | joventina@gmail.com"  |
-                | joventina&@gmail.com  |
-                | joventina#@gmail.com  |
-                | joventina=@gmail.com  |
-                | joventina-@gmail.com  |
-                | joventina+@gmail.com  |
-                | joventina,@gmail.com  |
-                | joventina..@gmail.com |
+            | emailUsuario          | 
+            | joventinagmail.com    |
+            | joventina@gmail       |
+            | joventina @gmail.com  |
+            | joventina@gmail.com'  |
+            | joventina@gmail.com"  |
+            | joventina&@gmail.com  |
+            | joventina#@gmail.com  |
+            | joventina=@gmail.com  |
+            | joventina-@gmail.com  |
+            | joventina+@gmail.com  |
+            | joventina,@gmail.com  |
+            | joventina..@gmail.com |
      
      #ainda não deu certo
-    Scenario: Não deve ser possível atualzair o email com o mesmo e-mail de outro usuário
-        * def payloadAtualizar = { name: "Kamilly", email: "#(emailIgual)" }
+    Scenario: Não deve ser possível atualizar o email com o mesmo e-mail de outro usuário
+        # cria outro usuário para tentar utilizar o email de um usuário já criado
+        * def novoEmail = java.util.UUID.randomUUID() + "outrousuario@email.com"
+        * def payloadNovoUsuario =  { name: "Kamilly", email: "#(novoEmail)" , password: "12345678" }
+        Given path "users"
+        And request payloadNovoUsuario
+        When method post 
+        Then status 201
+        
+        # tento atualizar o usuário criado no background com o email do usuário criado acima
+        * def payloadAtualizar = { name: "Kamilly", email: "#(novoEmail)" }
         Given path "users"
         And header X-JWT-Token = token
         Given request payloadAtualizar
         When method put
-        Then status 400
-        And match response contains payloadAtualizar
+        Then status 422
+        And match response contains { error: "E-mail already in use." }
 
     @ignore
      Scenario: Não deve ser possivel atualizar E-mail com mais de 60 caracteres
