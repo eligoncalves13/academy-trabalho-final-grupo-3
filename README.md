@@ -1,7 +1,5 @@
-<h1>
-  <p>Grupo: Deu Ruim no Merge<p>
-  <img style="width:80px;" alt="NextLevelWeek" title="#NextLevelWeek" src="Assets/logo-github.png">  
-  <img style="width:90px;" alt="NextLevelWeek" title="#NextLevelWeek" src="Assets/logo-merge.png">
+<h1 align=center>
+  <img style="width:400px;" alt="NextLevelWeek" title="#NextLevelWeek" src="Assets/logo-grupo.png">
 </h1>
 
 ## Sistema Web [Lembra Compras](https://academy-lembra-compras.herokuapp.com)
