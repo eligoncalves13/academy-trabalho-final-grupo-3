@@ -1,5 +1,5 @@
-<h1 align=center>
-  <img style="width:400px;" alt="NextLevelWeek" title="#NextLevelWeek" src="Assets/logo-grupo.png">
+<h1 align=left>
+  <img style="width:100px;" alt="NextLevelWeek" title="#NextLevelWeek" src="Assets/logo-grupo.png">
 </h1>
 
 ### Sistema Web [Lembra Compras](https://academy-lembra-compras.herokuapp.com)
