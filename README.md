@@ -1,63 +1,50 @@
-# academy-trabalho-final-grupo-3
+<h1>
+  <p>Grupo: Deu Ruim no Merge<p>
+  <img style="width:80px;" alt="NextLevelWeek" title="#NextLevelWeek" src="logo-github.png">  
+  <img style="width:90px;" alt="NextLevelWeek" title="#NextLevelWeek" src="logo-merge.png">
+</h1>
 
-<h1 align=center><a target="_blank" href="https://demo.gethugothemes.com/liva" rel="nofollow">Time 3?...</a> <a  target="_blank"></a></h1>
-</div>
- <div style="display: inline_block"><br>
-<img align="right" img class="giphy-gif-img giphy-img-loaded" src="https://media1.giphy.com/media/4mc6Dsn9gyWTS/200w.gif?cid=ecf05e47bhsy1gj453r24ma84o3sdpb5x0l5uys3qfp3il1h&amp;rid=200w.gif&amp;ct=s" width="200" height="200" alt="car accident smoke Sticker" style="background: url(&quot;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4AQMAAACSSKldAAAABlBMVEUhIiIWFhYoSqvJAAAAGElEQVQY02MAAv7///8PWxqIPwDZw5UGABtgwz2xhFKxAAAAAElFTkSuQmCC&quot;) 0px 0px;">
- </div>
- 
-### Componentes:  
-[Élida](https://github.com/),    
-[Kamilly](https://github.com/),  
-[Lucas Chitolina](https://github.com/Chitolina) e     
-[Rosicléia](https://github.com/)    
+## Sistema Web [Lembra Compras](https://academy-lembra-compras.herokuapp.com)
+## API: [Swagger](https://lista-compras-api.herokuapp.com/api-docs)
 
-### Projeto: [Health Insurance Cross Sell Prediction 🏠 🏥](https://www.kaggle.com/anmolkumar/health-insurance-cross-sell-prediction)
+Os testes foram realizados no sistema ***Lembra Compras*** que tem como propósito auxiliar seus usuários a lembrarem de produtos a serem comprados durante a ida à a comércios do dia à dia, como supermercados, padarias, mercearias, etc.
 
-### Ferramentas:
+Os usuários podem se cadastrar para ter acesso a aplicação, o que permite que possam cadastrar suas listas de compras e, posteriormente, consultar as compras que já foram feitas anteriormente, permitindo controle e reutilização destas informaçõs para a elaboração de listas futuras. [Especificações do sistema](especificacao-lembra-compras.md)
 
-● [Análise Exploratória](https://github.com/Chitolina/RandomForestTeam/tree/main/EDA) <img align="center" alt="Jupyter" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg">  
-● [Gerenciamento de Tarefas](https://trello.com/b/Nypkyrp3/randomforest)  
-● Cloud (em breve)  
-● Modelo Preditivo (em breve)  
-● [Dashboard BI](https://github.com/Chitolina/RandomForestTeam/tree/main/BI_RANDOMF)  
-● Apresentação (em breve)  
+---
 
-### Desafios: colocar desafios do trabalho QA
+## Objetivo do trabalho
 
-Classificação de clientes que podem se interessar por 
-seguros de veículos.
+O Objetivo do trabalho final foi aplicar os conhecimentos que acumulamos durante todo o curso:
 
-### Objetivo:
+1. Métodos de teste;
+2. Documentação viva com BDD e Gherkin;
+3. Testes de API;
+4. Testes ponto à ponto;
+5. Trabalho e interação em equipe
 
-Produzir um modelo preditivo para classificação de potenciais clientes a firmar seguro de veículo com a 
-companhia.
+---
 
-### Entregáveis:
+### BDD
+Foram consideradas as especificações do sistema Lembra Compras, analisadas as *users storires* e critérios de aceite.
+Os cenários foram documentados no formato de Gherkin e foram utilizados para testar os critérios no sistema.
 
-1. Data Pipeline para automatizar todas as etapas de 
-um projeto de dados.
-2. Modelo preditivo.
-3. Código fonte e artefatos do projeto.
-4. Listagem de fatores que influenciam a decisão do 
-modelo.
-5. Relatório com insights gerados a partir dos dados.
-6. Dashboard para tomada de decisão.
-7. Data App ou API para consumo do modelo.
-8. Apresentação em formato slide ou pdf.
+---
+## Testes funcionais e exploratórios
+Foi considerado o roteiro de testes definido em nosso BDD, realizado testes funcionais e exploratórios no sistema web, no qual foram encontrados bugs e documentados na ferramenta [Trello](https://trello.com/invite/b/K7HZskcV/1e8e747e4462969e2a75ceade98a1933/academy-trabalho-final-grupo-3)
 
-### Premissas e pontos para levar em consideração:  
-● Organização.  
-○ Código.  
-○ Artefatos.  
-○ Documentações.  
-● Tecnologias.  
-○ Explore as diferentes tecnologias e saiba o 
-porquê de cada uma na solução desenvolvida.  
-● Foco na resolução do problema.  
-○ Pense em desenvolver um projeto que tenha 
-valor para o negócio.  
-○ Calcule o impacto do trabalho.  
-○ O seu projeto SEMPRE terá melhorias.  
-● Se possível trazer algo funcionando.  
-○ Uma API, Dashboard, App.  
+---
+## Testes automatizados de API com Karate Framework
+Foi criado um projeto de testes de API utilizando o Karate Framework, para validar os critérios de aceite implementados na API do Lembra Compras [Swagger](https://lista-compras-api.herokuapp.com/api-docs)
+
+---
+## Testes automatizados de Frontend com Cypress
+Foi criado um projeto de testes de Frontend utilizando o framework Cypress e configurado utilizando a ferramenta Cucumber para integrar com os arquivos de Feature.
+
+---
+### Autores
+
+-   **[Élida](https://github.com/eligoncalves13)**
+-   **[Kamilly](https://github.com/Kamillytiburtino)**
+-   **[Lucas Chitolina](https://github.com/Chitolina)**
+-   **[Rosicléia](https://github.com/Rosicleia)**
