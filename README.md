@@ -1,7 +1,7 @@
 <h1>
   <p>Grupo: Deu Ruim no Merge<p>
-  <img style="width:80px;" alt="NextLevelWeek" title="#NextLevelWeek" src="logo-github.png">  
-  <img style="width:90px;" alt="NextLevelWeek" title="#NextLevelWeek" src="logo-merge.png">
+  <img style="width:80px;" alt="NextLevelWeek" title="#NextLevelWeek" src="Assets/logo-github.png">  
+  <img style="width:90px;" alt="NextLevelWeek" title="#NextLevelWeek" src="Assets/logo-merge.png">
 </h1>
 
 ## Sistema Web [Lembra Compras](https://academy-lembra-compras.herokuapp.com)
@@ -9,7 +9,7 @@
 
 Os testes foram realizados no sistema ***Lembra Compras*** que tem como propósito auxiliar seus usuários a lembrarem de produtos a serem comprados durante a ida à a comércios do dia à dia, como supermercados, padarias, mercearias, etc.
 
-Os usuários podem se cadastrar para ter acesso a aplicação, o que permite que possam cadastrar suas listas de compras e, posteriormente, consultar as compras que já foram feitas anteriormente, permitindo controle e reutilização destas informaçõs para a elaboração de listas futuras. [Especificações do sistema](especificacao-lembra-compras.md)
+Os usuários podem se cadastrar para ter acesso a aplicação, o que permite que possam cadastrar suas listas de compras e, posteriormente, consultar as compras que já foram feitas anteriormente, permitindo controle e reutilização destas informaçõs para a elaboração de listas futuras. [Especificações do sistema](Assets/especificacao-lembra-compras.md)
 
 ---
 
