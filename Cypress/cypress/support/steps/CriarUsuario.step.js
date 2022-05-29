@@ -6,7 +6,7 @@ Given("acessei o sistema Lembra Compras", () => {
 
 Given("acessei a tela de cadastro", () => {
     cadastroPage.clicarEmRegistrarSe();
-    cadastroPage.verficiarAcessoPaginaCadastro();
+    cadastroPage.verificarAcessoPaginaCadastro();
 });
 
 When("informo os dados válidos do usuário para cadastrar", (tabela) => {
@@ -60,7 +60,11 @@ Then("visualizo a mensagem de sucesso {string}", (mensagemSucesso) => {
 });
 
 Then("visualizo a mensagem de erro {string}", (mensagemErro) => {
-    cadastroPage.verificarMensagemErro(mensagemErro);
+    if(mensagemErro.includes(";")){
+        cadastroPage.verificarMensagemErro(mensagemErro.split(';'));
+    }else{
+        cadastroPage.verificarMensagemErro([mensagemErro]);
+    };
 });
 
 Then("visualizo a mensagem de email existente {string}", (mensagemErro) => {
@@ -68,7 +72,7 @@ Then("visualizo a mensagem de email existente {string}", (mensagemErro) => {
 });
 
 Then("visualizo a tela de login", () => {
-    cadastroPage.verficiarAcessoPaginaLogin();
+    cadastroPage.verificarAcessoPaginaLogin();
 });
 
 Then("visualizo a senha em formato de texto", () => {
