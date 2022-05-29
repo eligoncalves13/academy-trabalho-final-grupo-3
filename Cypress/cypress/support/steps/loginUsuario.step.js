@@ -1,4 +1,4 @@
-import { Before } from "cypress-cucumber-preprocessor/steps";
+import { After, Before } from "cypress-cucumber-preprocessor/steps";
 import { faker } from '@faker-js/faker';
 import { loginUsuarioPage } from "../pages/loginUsuario.po";
 import loginResposta from "../../fixtures/token.json";
@@ -10,6 +10,14 @@ const login = {
 
 Before({ tags: "@logout" }, () => {
     cy.logout();
+});
+
+Before({ tags: "@cadastrarUsuarioLogin" }, () => {
+    cy.cadastrarUsuarioLogin();
+});
+
+After({ tags: "@deletarUsuario" }, () => {
+    cy.deletarUsuario();
 });
 
 Given("acessei o sistema Lembra Compras", () => {
