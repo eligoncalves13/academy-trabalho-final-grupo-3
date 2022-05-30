@@ -1,5 +1,4 @@
 class GestaoCompras {
-    // Atributos da classe são os seletores da nossa tela
     inputNome = "input[name='name']";
     botaoAdicionar = ".sc-kLLXSd";
     inputDescricao = "input[name='description']";
@@ -81,7 +80,7 @@ class GestaoCompras {
 
     salvarLista(){
         cy.contains("button", "Salvar").click();
-        cy.wait(2000);
+        cy.wait(3000);
     };
 
     clicarConcluirItem(){
@@ -112,8 +111,8 @@ class GestaoCompras {
         cy.get(".sc-iTONeN").should("be.visible");
     };
 
-    verificarMensagemPositiva(seletor, mensagempositiva){
-        cy.contains(seletor, mensagempositiva).should("be.visible");
+    verificarMensagemPositiva(mensagempositiva){
+        cy.contains(mensagempositiva).should("be.visible");
     };
     
     verificarMensagemNegativa(mensagemnegativa){
@@ -126,15 +125,13 @@ class GestaoCompras {
         });    
     };
 
-    verificarSomaouConcatenacao() {
-        cy.get('p').contains('4x - Maça');
-        // cy.contains("span", "4").should("be.visible");
-        // cy.contains("span", "4x - Maça").should("be.visible");
-    }
+    verificarSoma(resultado) {
+        cy.contains('span', resultado).should("be.visible");
+    };
     
     exibePaginaCriarLista() {
         cy.contains("h2", "Dê um nome para sua lista").should("be.visible");
-    }
+    };
 }
 
 export var gestaoCompras = new GestaoCompras();

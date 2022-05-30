@@ -47,28 +47,21 @@ Feature: Gestão de lista de compras
                 | Mercado    | PeraUvaMaçaSaladaPeraUvaMaçaSaladaPera    |  3            |  Informe no máximo 30 caracteres       | 
                 | Natal      | T                                         |   4           |  Informe o nome do produto             |
 
-        Scenario Outline: Adicionar item já presente na lista, desde que seja uma unidade, e depois acrescentar um novo com qualquer unidade, soma sua quantidade
-            When informo os campos de criação da lista, o primeiro item possui 1 unidade
+        Scenario Outline: Deve ser possível visualizar a quantidade total do item quando adicionado uma nova quantidade   
+            When informo os campos de criação da lista, acrescentando um item
             | descricao   |     <descricao>       |
             | nome        |     <nome>            |
             | quantidade  |     <quantidade>      |
-            Then visualizo a soma dos itens
+            And acrescento um item com nome já presente
+            | nome        |     <nome_novo>            |
+            | quantidade  |     <quantidade_nova>      |
+            And salvo a lista 
+            Then visualizo "<resultado>" na soma dos itens
             Examples: 
-                | descricao  |              nome                         | quantidade    |
-                | Ano Novo   | Peru                                      |  1            |
-                | Ano Novo   | Peru                                      |  3            |
+                | descricao  | nome  | quantidade | nome_novo | quantidade_nova | resultado |
+                | Ano Novo   | Peru  |  1         | Peru      |       1         |     2     |
+                | Ano Novo   | Torta |  3         | Torta     |       5         |     8     |
 
-        Scenario Outline: Adicionar item já presente na lista, com o primeiro item sendo maior que uma unidade, concatena sua quantidade
-            When informo os campos de criação da lista, o primeiro item possui mais de 1 unidade
-            | descricao   |     <descricao>       |
-            | nome        |     <nome>            |
-            | quantidade  |     <quantidade>      |
-            Then visualizo a soma dos itens 
-            Examples: 
-                | descricao  |              nome                         | quantidade    |
-                | Ano Novo   | Peru                                      |  2            |
-                | Ano Novo   | Peru                                      |  3            |
-        
         Scenario: Sistema permite adicionar nome de item com número
             When informo o nome do item com número
             | descricao   | Feirinha Numérica      |
@@ -85,7 +78,7 @@ Feature: Gestão de lista de compras
             | nome       | milho   |
             | quantidade | 2       |
             And salvo a lista 
-            Then visualizo a mensagem negativa "Não é permitido incluir mais de 1000 unidades do produto."
+            Then visualizo a mensagem negativa "Não foi possível criar a lista de compras 🥺"
 
         Scenario: Não deve ser possível atualizar quantidade do item maior que 1000 unidades quando a lista já está criada
             When informo os campos de criação da lista, acrescentando um item
