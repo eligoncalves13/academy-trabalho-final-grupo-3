@@ -1,11 +1,7 @@
 class GestaoCompras {
     // Atributos da classe são os seletores da nossa tela
     inputNome = "input[name='name']";
-    // botaoRegistrar = ".sc-ftvSup";
-    // botaoLogin = ".sc-ftvSup";
     botaoAdicionar = ".sc-kLLXSd";
-    // inputEmailLogin = "input[name='email']";
-    // inputSenhaLogin = "input[name='password']";
     inputDescricao = "input[name='description']";
     inputQuantidade = "input[name='amount']";
     mensagemNeg = '.sc-papXJ'
@@ -68,6 +64,52 @@ class GestaoCompras {
         cy.contains("button", "Salvar").click();        
         cy.contains("button", "Finalizar a lista").click();
         cy.contains("button", "Confirmar").click();
+    };
+
+    preencherListaComUmItem(descricao, nome, quantidade){
+        cy.get(this.inputDescricao).type(descricao);
+        cy.get(this.inputNome).type(nome);
+        cy.get(this.inputQuantidade).clear().type(quantidade);
+        cy.get(this.botaoAdicionar).click();
+    };
+
+    adicionarUmItem(nome, quantidade){
+        cy.get(this.inputNome).type(nome);
+        cy.get(this.inputQuantidade).clear().type(quantidade);
+        cy.contains("button", "+").click();
+    };
+
+    salvarLista(){
+        cy.contains("button", "Salvar").click();
+        cy.wait(2000);
+    };
+
+    clicarConcluirItem(){
+        cy.get(".sc-himrzO").click();
+    };
+
+    verificarItemRiscado(){
+        cy.get(".sc-gXmSlM").should('have.css', 'text-decoration-line', 'line-through');
+    };
+
+    finalizarLista(){
+        cy.contains("button", "Finalizar a lista").click();
+    };
+
+    confirmarFinalizarLista(){
+        cy.contains("button", "Confirmar").click();
+    };
+
+    fecharModalFinalizarLista(){
+        cy.contains("button", "x").click();
+    };
+
+    verificarInexistenciaModal(){
+        cy.get(".sc-ciZhAO").should("not.exist");
+    };
+
+    verificarListaCriada(){
+        cy.get(".sc-iTONeN").should("be.visible");
     };
 
     verificarMensagemPositiva(seletor, mensagempositiva){

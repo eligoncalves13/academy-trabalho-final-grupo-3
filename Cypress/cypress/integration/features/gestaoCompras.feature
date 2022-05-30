@@ -2,7 +2,6 @@
 @deletarUsuario
 @logout
 
-
 Feature: Gestão de lista de compras
         Como um usuário com conta no sistema
         Desejo gerenciar uma lista de compras
@@ -77,63 +76,63 @@ Feature: Gestão de lista de compras
             | quantidade  | 13                     |
             Then visualizo a mensagem positiva "Lista concluída com sucesso!"     
 
-        # Scenario: Não deve ser possível atualizar quantidade do item maior que 1000 unidades quando está criando a lista
-        #     When informo os campos de criação da lista, acrescentando um item
-        #     | descricao  | mercado |
-        #     | nome_item  | milho   |
-        #     | quantidade | 999     |
-        #     And acrescento um item com nome já presente 
-        #     | nome_item  | milho   |
-        #     | quantidade | 2       |
-        #     And salvo a lista 
-        #     Then visualizo a mensagem negativa "Não é permitido incluir mais de 1000 unidades do produto."
+        Scenario: Não deve ser possível atualizar quantidade do item maior que 1000 unidades quando está criando a lista
+            When informo os campos de criação da lista, acrescentando um item
+            | descricao  | mercado |
+            | nome       | milho   |
+            | quantidade | 999     |
+            And acrescento um item com nome já presente 
+            | nome       | milho   |
+            | quantidade | 2       |
+            And salvo a lista 
+            Then visualizo a mensagem negativa "Não é permitido incluir mais de 1000 unidades do produto."
 
-        # Scenario: Não deve ser possível atualizar quantidade do item maior que 1000 unidades quando a lista já está criada
-        #     When informo os campos de criação da lista, acrescentando um item
-        #     | descricao  | mercado |
-        #     | nome_item  | milho   |
-        #     | quantidade | 999     |
-        #     And salvo a lista 
-        #     And acrescento um item com nome já presente 
-        #     | nome_item  | milho   |
-        #     | quantidade | 2       |
-        #     Then visualizo a mensagem negativa "Não é permitido incluir mais de 1000 unidades do produto."
+        Scenario: Não deve ser possível atualizar quantidade do item maior que 1000 unidades quando a lista já está criada
+            When informo os campos de criação da lista, acrescentando um item
+            | descricao  | mercado |
+            | nome       | milho   |
+            | quantidade | 999     |
+            And salvo a lista 
+            And acrescento um item com nome já presente 
+            | nome       | milho   |
+            | quantidade | 2       |
+            Then visualizo a mensagem negativa "Não é permitido incluir mais de 1000 unidades do produto."
 
-        # Scenario: Deve ser possível marcar item como concluído
-        #     When informo os campos de criação da lista, acrescentando um item
-        #     | descricao  | mercado |
-        #     | nome_item  | leite   |
-        #     | quantidade | 5       |
-        #     And salvo a lista 
-        #     And marco o item como concluído 
-        #     Then o item é riscado da lista 
+        Scenario: Deve ser possível marcar item como concluído
+            When informo os campos de criação da lista, acrescentando um item
+            | descricao  | mercado |
+            | nome       | leite   |
+            | quantidade | 5       |
+            And salvo a lista 
+            And marco o item como concluído 
+            Then o item é riscado da lista 
 
-        # Scenario: Deve ser possível finalizar a lista de compras 
-        #     When informo os campos de criação da lista, acrescentando um item 
-        #     | descricao  | mercado |
-        #     | nome_item  | feijão  |
-        #     | quantidade | 1       |
-        #     And salvo a lista 
-        #     And seleciono para finalizar a lista 
-        #     And confirmo a finalização da lista 
-        #     Then visualizo a mensagem positiva "Lista concluída com sucesso!"
+        Scenario: Deve ser possível finalizar a lista de compras 
+            When informo os campos de criação da lista, acrescentando um item 
+            | descricao  | mercado |
+            | nome       | feijão  |
+            | quantidade | 1       |
+            And salvo a lista 
+            And seleciono para finalizar a lista 
+            And confirmo a finalização da lista
+            Then visualizo a mensagem positiva "Lista concluída com sucesso!"
 
-        # Scenario: O status de concluído do item não deve ser alterado ao recarregar a página 
-        #     When informo os campos de criação da lista, acrescentando um item 
-        #     | descricao  | mercado |
-        #     | nome_item  | arroz   |
-        #     | quantidade | 1       |
-        #     And salvo a lista 
-        #     And marco o item como concluído 
-        #     And atualizo a página
-        #     Then o item deve permanecer riscado 
+        Scenario: O status de concluído do item não deve ser alterado ao recarregar a página 
+            When informo os campos de criação da lista, acrescentando um item 
+            | descricao  | mercado |
+            | nome       | arroz   |
+            | quantidade | 1       |
+            And salvo a lista 
+            And marco o item como concluído 
+            And atualizo a página
+            Then o item deve permanecer riscado 
 
-        # Scenario: Deve ser possível fechar o modal de finalizar lista
-        #     When informo os campos de criação da lista, acrescentando um item 
-        #     | descricao  | mercado |
-        #     | nome_item  | queijo  |
-        #     | quantidade | 3       |
-        #     And salvo a lista 
-        #     And seleciono para finalizar a lista 
-        #     And seleciono para fechar a modal 
-        #     Then a modal é fechada sem finalizar a lista 
+        Scenario: Deve ser possível fechar o modal de finalizar lista
+            When informo os campos de criação da lista, acrescentando um item 
+            | descricao  | mercado |
+            | nome       | queijo  |
+            | quantidade | 3       |
+            And salvo a lista 
+            And seleciono para finalizar a lista 
+            And seleciono para fechar a modal 
+            Then a modal é fechada sem finalizar a lista 
