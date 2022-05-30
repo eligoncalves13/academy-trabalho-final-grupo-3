@@ -7,7 +7,6 @@ class AtualizarUsuarioPage {
     
 
     acessarLogin() {
-        cy.visit("/logout");
         cy.visit("/login");
     }
 
