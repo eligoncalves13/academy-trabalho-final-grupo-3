@@ -1,0 +1,13 @@
+{
+  "description": "#(response.description)",
+  "items": [
+    {
+      "id": "#(response.items[0].id)",
+      "listId": "#(response.items[0].listId)",
+      "name": "#(response.items[0].name)",
+      "amount": "#(response.items[0].amount)",
+      "createdAt": "#(response.items[0].createdAt)",
+      "updatedAt": "#(response.items[0].updatedAt)"
+    }
+  ]
+}
