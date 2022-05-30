@@ -11,7 +11,7 @@ Cypress.Commands.add('cadastrarUsuarioLogin', () => {
         name: "Raro Academy",
         email: faker.internet.email().toLowerCase(),
         password: "senha1234"
-    }
+    };
 
     cy.request({
         url: `${API_URL}/users`,
@@ -34,7 +34,7 @@ Cypress.Commands.add('deletarUsuario', () => {
         const sessionData = window.sessionStorage.getItem('sessionData');
         if (!sessionData) return;
 
-        const token = JSON.parse(sessionData).session.token
+        const token = JSON.parse(sessionData).session.token;
 
         cy.request({
             url: `${API_URL}/cancel-account`,
