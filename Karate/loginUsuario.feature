@@ -3,7 +3,7 @@ Feature: Login do usuário
     Desejo realizar meu acesso na aplicação
     Para conseguir utilizar os serviços do Lembra Compras
 
-    Background: Base url
+    Background: Acessar o sistema
         Given url baseUrl
         And path "auth/login"
 
@@ -32,19 +32,3 @@ Feature: Login do usuário
             | grupo3@email.com |           |
             |                  | senha1234 |
             |                  |           |
-
-    Scenario Outline: Não deve ser possível efetuar o login informando o e-mail inválido <email> e <senha>
-        Given request { email: "#(email)", password: "#(senha)" }
-        When method post
-        Then status 403
-        And match response == { error: "Invalid email or password." }
-        Examples:
-            | email                                                                                                         | senha                              |
-            | grupo3email.com                                                                                               | senha1234                          |
-            | grupo3@                                                                                                       | senha1234                          |
-            | grupo3@email                                                                                                  | senha1234                          |
-            | grupo3@email.                                                                                                 | senha1234                          |
-            | !@#$% @email.com                                                                                              | senha1234                          |
-            | abc                                                                                                           | senha1234                          |
-            | abcdefghijklmnopqrstuvwxyz0123456789abcdefghijklmnopqrstuvwxyz0123456789_ABCDEFGHIJKLMNOPQRSTUVWXYZ@email.com | senha1234                          |
-            | grupo3@email.com                                                                                              | ABCDEFGHIJKLMNOPQRSTUVWXYZ_12345** |

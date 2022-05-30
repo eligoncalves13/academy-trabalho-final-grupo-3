@@ -1,5 +1,12 @@
 # Testes automatizados de API com Karate Framework
 
+Teste automatizado da API do [Lembra Compras](https://lista-compras-api.herokuapp.com/api-docs/#/) com o framework Karate DSL.
+
+## Dependências 
+
+- [Java 8](https://www.oracle.com/br/java/technologies/javase/javase8-archive-downloads.html)
+- [Karate DSL]()
+
 ## Configurando ambiente
 
 ### 1. Instalação do Java
@@ -31,19 +38,45 @@
 
     **Testando a configuração**
 
-    - Abra o Prompt de comando
+    - Abra o prompt de comando
     - Escreva o comando ``echo %JAVA_HOME%``. O prompt deverá exibir o local de instalação do Java
     - Escreva o comando ``java -version``. O prompt deverá exibir a versão do Java que está instalada em seu computador
 
 - **Mac OS**:
 
-- **Linux**:
+  - Acesse o terminal 
 
-### 3. Instalação do Standalone Karate Framework
+  - Execute o comando `cd ~`
 
-- Acesse [Releases do Karate](https://github.com/karatelabs/karate/releases)
+  - Execute o comando `vi .bash_profile`
 
-- Localize a última ``release`` disponível contendo a tag ``Latest``
-- Acesse a grade de ``Assets``
-- Faça download do arquivo ``karate-1.2.0.RC1.jar``. ``Obs:`` Atente-se ao fato que o número da versão pode mudar
+  - Ative o modo de edição de texto teclando a letra `i`
+
+  - Edite o arquivo para configurar as variáveis de ambiente
+
+    ```
+    export JAVA_HOME=$(/usr/libexec/java_home)
+    export PATH=$JAVA_HOME/bin:$PATH
+    ```
+
+  - Saia do modo de edição teclando `ESC`
+
+  - Salve o arquivo teclando `:wq` e pressionando `enter`
+
+### 3. Clone esse repositório 
+
+- Clone esse repositório 
+  - `git clone https://github.com/eligoncalves13/academy-trabalho-final-grupo-3.git` 
+- Abra o projeto no prompt de comando
+  - `cd academy-trabalho-final-grupo-3`
+
+## Execução do teste 
+
+- Rodar todos os arquivo 
+
+  -  `java -jar karate.jar *.feature` 
+- RodaR um arquivo 
+
+  -  `java -jar karate.jar NOME_DO_ARQUIVO.feature`
+
 

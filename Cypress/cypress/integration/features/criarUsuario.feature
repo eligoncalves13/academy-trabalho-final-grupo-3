@@ -13,13 +13,13 @@ Feature: Criar usuário
         | email           | <email>           |
         | senha           | <senha>           |
         | confirmar_senha | <confirmar_senha> |
-        Then visualizo a mensagem de sucesso "<mensagem>"
+        Then visualizo a mensagem de sucesso "Usuário criado com sucesso!"
         Examples: 
-            | nome                                                                                                 | email                                                        | senha                           | confirmar_senha                | mensagem                    |
-            | Raro                                                                                                 | raro@academy.com                                             | 1234                            | 1234                           | Usuário criado com sucesso! |
-            | Raro Academy                                                                                         | r@a.com                                                      | 123456789123456789123456789123  | 123456789123456789123456789123 | Usuário criado com sucesso! |
-            | Raro Academy Wacky League Antlez Broke the Stereo Neon Tide Bring Back Honesty Coalition Feedback Ha | raro@a.com                                                   | 1234                            | 1234                           | Usuário criado com sucesso! |
-            | Raro Name                                                                                            | raroleagueantlezbrokestereoneontidebringbackhonesty@raro.com | 1234                            | 1234                           | Usuário criado com sucesso! |
+            | nome                                                                                                 | email                                                        | senha                           | confirmar_senha                | 
+            | Raro                                                                                                 | raro@academy.com                                             | 1234                            | 1234                           |
+            | Raro Academy                                                                                         | r@a.com                                                      | 123456789123456789123456789123  | 123456789123456789123456789123 | 
+            | Raro Academy Wacky League Antlez Broke the Stereo Neon Tide Bring Back Honesty Coalition Feedback Ha | raro@a.com                                                   | 1234                            | 1234                           | 
+            | Raro Name                                                                                            | raroleagueantlezbrokestereoneontidebringbackhonesty@raro.com | 1234                            | 1234                           | 
 
     Scenario Outline: Não deve ser possível cadastrar usuário sem informar todos os dados 
         When informo os dados do usuário para cadastrar
@@ -34,6 +34,7 @@ Feature: Criar usuário
             | Raro |                  | 1234  | 1234            | Informe seu e-mail |
             | Raro | raro@academy.com |       | 1234            | Informe sua senha  |
             | Raro | raro@academy.com | 1234  |                 | Informe sua senha  |
+            |      |                  |       |                 | Informe seu nome;Informe seu e-mail;Informe sua senha;Informe sua senha |
 
     Scenario Outline: Não deve ser possível cadastrar usuário com email inválido
         When informo os dados do usuário para cadastrar
@@ -41,14 +42,14 @@ Feature: Criar usuário
         | email           | <email>           |
         | senha           | <senha>           |
         | confirmar_senha | <confirmar_senha> |
-        Then visualizo a mensagem de erro "<mensagem>"
+        Then visualizo a mensagem de erro "Formato de e-mail inválido."
         Examples: 
-            | nome  | email             | senha | confirmar_senha | mensagem                    |
-            | Raro  | raro              | 1234  | 1234            | Formato de e-mail inválido. |
-            | Raro  | raro@             | 1234  | 1234            | Formato de e-mail inválido. |
-            | Raro  | raro.             | 1234  | 1234            | Formato de e-mail inválido. |
-            | Raro  | raro@academy      | 1234  | 1234            | Formato de e-mail inválido. |
-            | Raro  | raro#@academy.com | 1234  | 1234            | Formato de e-mail inválido. |
+            | nome  | email             | senha | confirmar_senha | 
+            | Raro  | raro              | 1234  | 1234            | 
+            | Raro  | raro@             | 1234  | 1234            | 
+            | Raro  | raro.             | 1234  | 1234            | 
+            | Raro  | raro@academy      | 1234  | 1234            | 
+            | Raro  | raro#@academy.com | 1234  | 1234            | 
 
     Scenario: Não deve ser possível cadastrar usuário com email já existente
         When informo os dados do usuário com email já existente para cadastrar
@@ -56,7 +57,7 @@ Feature: Criar usuário
         | email           | raro@academy.com |
         | senha           | 1234             |
         | confirmar_senha | 1234             |
-        Then visualizo a mensagem de erro "Este e-mail já é utilizado por outro usuário."
+        Then visualizo a mensagem de email existente "Este e-mail já é utilizado por outro usuário."
                 
     Scenario: Não deve ser possível cadastrar usuário com nome com mais de 100 caracteres
         When informo os dados do usuário para cadastrar
@@ -69,7 +70,7 @@ Feature: Criar usuário
     Scenario: Não deve ser possível cadastrar usuário com email com mais de 60 caracteres
         When informo os dados do usuário para cadastrar
         | nome            | Raro |
-        | email | raroleagueantlezbrokestereoneontidebringbackhonestys@raro.com |
+        | email           | raroleagueantlezbrokestereoneontidebringbackhonestys@raro.com |
         | senha           | 1234 |
         | confirmar_senha | 1234 |
         Then visualizo a mensagem de erro "Informe no máximo 60 caracteres."
@@ -80,28 +81,24 @@ Feature: Criar usuário
         | email           | <email>           |
         | senha           | <senha>           |
         | confirmar_senha | <confirmar senha> |
-        Then visualizo a mensagem de erro "<mensagem>"
+        Then visualizo a mensagem de erro "Formato do nome é inválido."
         Examples: 
-            | nome  | email             | senha | confirmar_senha | mensagem                    |
-            | R@ro  | raro@academy.com  | 1234  | 1234            | Formato do nome é inválido. |
-            | R123  | raro@academy.com  | 1234  | 1234            | Formato do nome é inválido. |
-            | R#Ro  | raro@academy.com  | 1234  | 1234            | Formato do nome é inválido. |
-            | Ra-Ro | raro@academy.com  | 1234  | 1234            | Formato do nome é inválido. |
-            | Ra$Ro | raro@academy.com  | 1234  | 1234            | Formato do nome é inválido. |
-            | ....  | raro@academy.com  | 1234  | 1234            | Formato do nome é inválido. |
+            | nome  | email             | senha | confirmar_senha | 
+            | R@ro  | raro@academy.com  | 1234  | 1234            | 
+            | R123  | raro@academy.com  | 1234  | 1234            | 
+            | R#Ro  | raro@academy.com  | 1234  | 1234            | 
+            | Ra-Ro | raro@academy.com  | 1234  | 1234            | 
+            | Ra$Ro | raro@academy.com  | 1234  | 1234            | 
+            | ....  | raro@academy.com  | 1234  | 1234            | 
 
-    Scenario Outline: Não deve ser possível criar usuário com nome com menos de 4 caracteres válidos
+    Scenario: Não deve ser possível criar usuário com nome com menos de 4 caracteres válidos
         When informo os dados do usuário para cadastrar
-        | nome            | <nome>            |
-        | email           | <email>           |
-        | senha           | <senha>           |
-        | confirmar_senha | <confirmar_senha> |
-        Then visualizo a mensagem de erro "<mensagem>"
-        Examples: 
-            | nome  | email             | senha | confirmar_senha | mensagem                  |
-            | Rar   | raro@academy.com  | 1234  | 1234            | Informe seu nome completo |
-            |  Rar  | raro@academy.com  | 1234  | 1234            | Informe seu nome completo |
-            |   R   | raro@academy.com  | 1234  | 1234            | Informe seu nome completo |
+        | nome            | Rar              |
+        | email           | raro@academy.com |
+        | senha           | 1234             |
+        | confirmar_senha | 1234             |
+        Then visualizo a mensagem de erro "Informe seu nome completo"
+
 
     Scenario: Não deve ser possível cadastrar usuário com senha com mais de 30 caracteres
         When informo os dados do usuário para cadastrar

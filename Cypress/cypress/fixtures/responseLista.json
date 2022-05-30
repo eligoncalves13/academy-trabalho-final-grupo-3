@@ -1,0 +1,13 @@
+{
+    "description": "Lista Compra 1 ",
+    "items":[
+        {
+            "id": "6c1665c7-fda6-4a94-803d-8cf28c1b2d46",
+            "listId": "127526bb-0550-400e-b6dd-28a4ab55214f",
+            "name": "Leite",
+            "amount": 2,
+            "createdAt": "2022-05-26T17:35:05.825Z",
+            "updatedAt": "2022-05-26T17:35:05.825Z"
+        }
+    ]
+}
