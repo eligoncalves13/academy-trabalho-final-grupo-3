@@ -1,7 +1,28 @@
 class HistoricoListaDeComprasPage {
 
+    acessarPaginaInicial() {
+        cy.visit("/lista");
+    }
+
     clicarNoHistorico() {
-        cy.get("a[href='/historico']").click();
+        cy.contains("a[href='/historico']", "Histórico").click();
+    }
+
+    clicarNoMenuOpcoes() {
+        cy.get(".bgBaRw").should("be.visible").click();
+        cy.get(".eLmrFd").should("be.visible");
+    }
+
+    clicarNaOpcaoHistorico() {
+        cy.get("a.cvtYsR[href='/historico']").should("be.visible").click();
+    }
+
+    clicarEmLista() {
+        cy.get(".kUIcKA").first().should("be.visible").click();
+    }
+
+    clicarNaOpcaoPaginaInicial() {
+        cy.get("a.cvtYsR[href='/lista']").should("be.visible").click();
     }
 
     exibirHistoricoDeListas() {
@@ -12,10 +33,6 @@ class HistoricoListaDeComprasPage {
     exibirNomeEDataLista() {
         cy.contains(".kUIcKA > p", "Lista Compra 1").should("be.visible");
         cy.contains(".kUIcKA > span", "Criada em: 25/05/2022").should("be.visible");
-    }
-
-    clicarEmLista() {
-        cy.get(".kUIcKA").first().should("be.visible").click();
     }
 
     exibirItenslista() {

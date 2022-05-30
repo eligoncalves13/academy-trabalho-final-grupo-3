@@ -5,7 +5,7 @@ Feature: Login do usuário
     Para conseguir utilizar os serviços do Lembra Compras
 
     Background: Acessar o sistema
-        Given acessei o sistema Lembra Compras
+        Given acessei a página de login do sistema Lembra Compras
     
     Scenario: Deve ser possível efetuar o login informando os dados válidos
         When informo os dados válidos para efetuar o login
