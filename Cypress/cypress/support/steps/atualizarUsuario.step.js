@@ -1,11 +1,7 @@
 import { atualizarUsuarioPage } from "../pages/atualizarUsuario.po";
 import { faker } from '@faker-js/faker'
 
-const user = { 
-    name: faker.name.firstName() + ' ' + faker.name.middleName(),
-    email: faker.internet.email().toLowerCase(),
-    password: faker.internet.password()
-}
+let user = {}
 
 //Background
 Given("acessei o sistema Lembra Compras", () => {
@@ -13,6 +9,12 @@ Given("acessei o sistema Lembra Compras", () => {
 });
 
 When("informo os dados válidos do usuário para cadastrar e logar no sistema", () => {
+    user = { 
+        name: faker.name.firstName() + ' ' + faker.name.middleName(),
+        email: faker.internet.email().toLowerCase(),
+        password: faker.internet.password()
+    }
+
     atualizarUsuarioPage.clicarBotaoRegistrase();
     atualizarUsuarioPage.criarUsuario(user.name, user.email, user.password, user.password);
     atualizarUsuarioPage.clicarEmRegistrar();
@@ -43,7 +45,6 @@ Then('visualizo a mensagem de sucesso "Informações atualizadas com sucesso!"',
 When("informo o nome com 101 caracteres", (tabela) => {
     var dados = tabela.rowsHash();
     atualizarUsuarioPage.preencherNome(dados.nome);
-  
 })
 
 Then('visualizo a mensagem de erro "Informe no máximo 100 letras no seu nome"', () => {
@@ -107,7 +108,10 @@ When("Informo e-mail já utilizado por outro usuário", () => {
     atualizarUsuarioPage.preencherEmail(outroUsuario.email);
     atualizarUsuarioPage.clicarBotaoConfirmarAlteracoes();
     atualizarUsuarioPage.clicarBotaoConfirma();
-    
+})
+
+Then('visualizo a mensagem de erro "Este e-mail já é utilizado por outro usuário"', () => {
+    atualizarUsuarioPage.validarMensagemEmailJaCadastrado();
 })
 
 // Atualizar usuário com mais de 60 caracteres
@@ -181,11 +185,11 @@ Then("visualizo minha lista de compras", () => {
 //Validar Logout
 When("seleciono a opção sair", () => {
     atualizarUsuarioPage.clicarOpcoes();
-    atualizarUsuarioPage.clicarEmSair();
     atualizarUsuarioPage.detelarUsuario();
+
+    atualizarUsuarioPage.clicarEmSair();
 })
 
 Then("visualizo a tela de login", () => {
     atualizarUsuarioPage.telaLogin();
-    
 })

@@ -44,7 +44,7 @@ Feature: Atualizar usuario
     
     Scenario: Não deve ser possível cadastrar email utilizado por outro usuário
         When Informo e-mail já utilizado por outro usuário
-        Then visualizo a mensagem de erro "Informações atualizadas com sucesso!"
+        Then visualizo a mensagem de erro "Este e-mail já é utilizado por outro usuário"
 
     
     Scenario: Não deve ser possível atualizar E-mail com mais de 60 caracteres

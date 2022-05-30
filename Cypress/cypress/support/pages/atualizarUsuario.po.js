@@ -168,6 +168,10 @@ class AtualizarUsuarioPage {
     telaLogin() {
         cy.contains(" h1", "Entre e saiba mais").should("be.visible");
     }
+
+    validarMensagemEmailJaCadastrado() {
+        cy.contains("span", "Este e-mail já é utilizado por outro usuário").should("be.visible");
+    }
 }
 
 
