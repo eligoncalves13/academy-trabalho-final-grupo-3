@@ -17,9 +17,7 @@ Feature: Atualizar usuário
         When method post
         Then status 200
         * def token = response.session.token
-        
-
-    @ignore
+         
     Scenario: Deve ser possível editar o nome e o Email do usuário criado
         * def novoEmail = java.util.UUID.randomUUID() + "luzia@email.com"
         * def payloadAtualizar = { name: "Luzia", email: "#(novoEmail)" }
@@ -29,8 +27,7 @@ Feature: Atualizar usuário
         When method put
         Then status 200
         And match response contains payloadAtualizar
-
-    @ignore
+ 
     Scenario: Não deve ser possivel editar um usuário com mais de 100 caracteres no campo nome
         Given path "users"
         And header X-JWT-Token = token
@@ -38,8 +35,7 @@ Feature: Atualizar usuário
         When method put
         Then status 400
         And match response contains { error: "Bad request." }
-
-    @ignore
+ 
     Scenario: Não deve ser possível salvar usuário sem nome
         Given path "users"
         And header X-JWT-Token = token
@@ -48,40 +44,47 @@ Feature: Atualizar usuário
         Then status 400
         And match response contains { error: "Bad request." }
 
-    @ignore
     Scenario Outline: Não deve ser possível salvar com E-mail inválido
-         Given path "users"
+        Given path "users"
         And header X-JWT-Token = token
-        Given request { name: "Kamilly", email: "#(emailUsuario)" } 
+        * def emailTeste = java.util.UUID.randomUUID() + emailUsuario
+        Given request { name: "Kamilly", email: "#(emailTeste)" } 
         When method put
         Then status 400
         And match response contains { error: "Bad request." }
         Examples:
-                | emailUsuario          | 
-                | joventinagmail.com    |
-                | joventina@gmail       |
-                | joventina @gmail.com  |
-                | joventina@gmail.com'  |
-                | joventina@gmail.com"  |
-                | joventina&@gmail.com  |
-                | joventina#@gmail.com  |
-                | joventina=@gmail.com  |
-                | joventina-@gmail.com  |
-                | joventina+@gmail.com  |
-                | joventina,@gmail.com  |
-                | joventina..@gmail.com |
+            | emailUsuario          | 
+            | joventinagmail.com    |
+            | joventina@gmail       |
+            | joventina @gmail.com  |
+            | joventina@gmail.com'  |
+            | joventina@gmail.com"  |
+            | joventina&@gmail.com  |
+            | joventina#@gmail.com  |
+            | joventina=@gmail.com  |
+            | joventina-@gmail.com  |
+            | joventina+@gmail.com  |
+            | joventina,@gmail.com  |
+            | joventina..@gmail.com |
      
-     #ainda não deu certo
-    Scenario: Não deve ser possível atualzair o email com o mesmo e-mail de outro usuário
-        * def payloadAtualizar = { name: "Kamilly", email: "#(emailIgual)" }
+    Scenario: Não deve ser possível atualizar o email com o mesmo e-mail de outro usuário
+        # cria outro usuário para tentar utilizar o email de um usuário já criado
+        * def novoEmail = java.util.UUID.randomUUID() + "outrousuario@email.com"
+        * def payloadNovoUsuario =  { name: "Kamilly", email: "#(novoEmail)" , password: "12345678" }
+        Given path "users"
+        And request payloadNovoUsuario
+        When method post 
+        Then status 201
+        
+        # tento atualizar o usuário criado no background com o email do usuário criado acima
+        * def payloadAtualizar = { name: "Kamilly", email: "#(novoEmail)" }
         Given path "users"
         And header X-JWT-Token = token
         Given request payloadAtualizar
         When method put
-        Then status 400
-        And match response contains payloadAtualizar
-
-    @ignore
+        Then status 422
+        And match response contains { error: "E-mail already in use." }
+ 
      Scenario: Não deve ser possivel atualizar E-mail com mais de 60 caracteres
         * def email = java.util.UUID.randomUUID() + "asdsdfsdkamilly@email.com"
         Given path "users"
@@ -90,8 +93,7 @@ Feature: Atualizar usuário
         When method put
         Then status 400
         And match response contains { error: "Bad request." }
-
-    @ignore
+ 
     Scenario:  Não deve ser possivel salvar usuário sem email
         Given path "users"
         And header X-JWT-Token = token
@@ -99,8 +101,7 @@ Feature: Atualizar usuário
         When method put
         Then status 400
         And match response contains { error: "Bad request." }
-
-    @ignore
+ 
     Scenario Outline: Não deve ser possível salvar com nome inválido
         * def email = java.util.UUID.randomUUID() + "@email.com"
         Given path "users"

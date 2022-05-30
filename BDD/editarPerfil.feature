@@ -12,69 +12,40 @@ Feature: Editar perfil
         When informo o nome válido para editar o perfil
         Then visualizo a mensagem de sucesso "Informações atualizadas com sucesso!"
 
-        /// Rosicleia tudo que é nome em um cenario só
-    Scenario: Não deve ser possivel atualizar um usuário com mais de 100 caracteres no campo nome
-        And clico no campo Nome Completo
-        Then Atualizo o nome do usuário
-            | Nome | Maria Joventinaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa |
-        Then Aparece a mensagem seguinte mensagem
-            | Mensagem | Informe no máximo 100 letras no seu nome |
+    Scenario: Não deve ser possível editar usuário com nome com mais de 100 caracteres
+        When informo o nome com mais de 100 caracteres
+        Then visualizo a mensagem de erro "Informe no máximo 100 letras no seu nome"
 
-    Scenario: Não é possível salvar usuário sem nome
-        And clico no campo Nome Completo
-        When Deleto o nome cadastrado 
-        Then Aparece a mensagem seguinte mensagem
-            | Mensagem | Informe seu nome |
+    Scenario: Não deve ser possível salvar usuário sem nome
+        When não informo nome do usuário
+        Then visualizo a mensagem de erro "Informe seu nome"
 
-    Scenario: Não é possível salvar nome com números ou caracteres especiais
-        And clico no campo Nome Completo
-        When Atualizo o nome do usuário
-            | Nome | @na Luiza |
-            | Nome | Ana Lu1za |
-            | Nome | Ana Lu-za |
-        Then Aparece a mensagem seguinte mensagem
-            | Mensagem | Formato do nome é inválido. |
+    Scenario: Não deve ser possível salvar nome com números ou caracteres especiais
+        When informo o nome do usuário
+            | nome | @na Luiza |
+            | nome | Ana Lu1za |
+            | nome | Ana Lu-iza |
+        Then visualizo a mensagem de erro "Formato do nome é inválido."
 
-    Scenario: Atualizar E-mail do usuário com sucesso
-        And clico no campo E-mail
-        When Atualizo o email do usuário 
-            | Email | joventina@gmail.com |
-        And clico em confirmar alterações
-        And clico em confirmar novamente
-        Then Aparece a mensagem seguinte mensagem
-            | Mensagem | Informações atualizadas com sucesso! |
+    Scenario: Deve ser possível atualizar E-mail do usuário com sucesso
+        When informo o email válido para editar o perfil
+        Then visualizo a mensagem de sucesso "Informações atualizadas com sucesso!"
 
-    Scenario: Email Não pode ser utilizado por outro usuário
-        And clico no campo E-mail
-        Then Atualizo o email do usuário com um e-mail já cadastrado
-            | Email | joventina@gmail.com |
-        And clico em confirmar alterações
-        And clico em confirmar novamente
-        Then Aparece a mensagem seguinte mensagem
-            | Mensagem | Email já cadastrado |
+    Scenario: Não deve ser possível cadastrar email utilizado por outro usuário
+        When Informo e-mail já utilizado por outro usuário
+        Then visualizo a mensagem de erro "Informações atualizadas com sucesso!"
 
-    Scenario: Não é possivel atualizar E-mail com mais de 60 caracteres
-        And clico no campo E-mail
-        Then Atualizo o email do usuário 
-            | Email | joventaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@gmail.com |
-            Then Aparece a mensagem seguinte mensagem
-            | Mensagem | Informe no máximo 100 caracteres. |
+    Scenario: Não aparece a mensagem no campo email "informe no máximo 60 caracteres"
+        When informo o email com 101 caracteres
+        Then visualizo a mensagem de erro no campo email "Informe no máximo 60 caracteres."
 
-    Scenario: Não é possivel salvar usuário sem email
-        And clico no campo E-mail
-        When Deleto o E-mail cadastrado 
-        Then Aparece a mensagem seguinte mensagem
-            | Mensagem | Informe seu e-mail |
+     Scenario: Não deve ser possivel salvar usuário sem email
+        When não informo email do usuário
+        Then visualizo a mensagem de erro "Informe seu e-mail"
 
-    Scenario Outline: Não é possível salvar com E-mail inválido
-        And clico no campo E-mail
-        When Atualizo o email do usuário 
-        Then Aparece a mensagem seguinte mensagem
-            | Mensagem | Formato de e-mail inválido. |
-
-        Examples:
-            | Email | <Email>               |
-            | Email | joventinagmail.com    |
+    Scenario: Não deve ser possível salvar com E-mail inválido 
+        When informo o email do usuário
+            | Email  | joventinagmail.com   |
             | Email | joventina@gmail       |
             | Email | joventina @gmail.com  |
             | Email | joventina@gmail.com'  |
@@ -85,17 +56,17 @@ Feature: Editar perfil
             | Email | joventina-@gmail.com  |
             | Email | joventina+@gmail.com  |
             | Email | joventina,@gmail.com  |
-            | Email | joventina..@gmail.com |
+        Then visualizo a mensagem de erro "Formato de e-mail inválido."
+
             
-    Scenario: Validar o botão histórico
-        When clico no botão hitórico
-        Then aparece meu histórico de lista de compras
+     Scenario: deve ser possível selecionar o botãos histórico
+        When seleciono a opção histórico
+        Then visualizo meu histórico de lista de compras
 
-    Scenario: Validar o botão lista
-        When clico no botão lista
-        Then aparece minha lista de compras
+    Scenario: deve ser possível selecionar o botão lista
+        When seleciono a opção lista
+        Then visualizo minha lista de compras
 
-    Scenario: Validar botão sair
-        When Clico no menu de opções
-        And clico no sair
-        Then Saio da conta 
+    Scenario: deve ser possível selecionar o botão sair
+        When seleciono a opção sair
+        Then visualizo a tela de login
