@@ -1,40 +1,7 @@
 import { gestaoCompras } from "../pages/gestaoCompras.po";
-import { faker } from '@faker-js/faker';
-import { loginUsuarioPage } from "../pages/loginUsuario.po.js"; 
-
-const login = {
-    emailLogin: faker.internet.email().toLowerCase(),
-    senhaLogin: faker.internet.password()
-}
-
-// Given("acessei a tela de cadastro", () => {
-//     criarUsuarios.visitar();
-// });
-
-// Given("acessei a tela de login", () => {
-//     criarUsuarios.visitarLogin();
-// });
 
 Given("acessei o sistema Lembra Compras", () => {
-    loginUsuarioPage.acessarLogin();
-});
-
-And("informo os dados válidos para efetuar o login", () => {
-    cy.intercept('POST', "api/v1/auth/login", {
-        statusCode: 200,
-        body: loginResposta
-    });
-    loginUsuarioPage.preencherLogin(login.emailLogin, login.senhaLogin);
-});
-
-When("preencho o formulário e salvo", (tabela) =>{
-    var dadosTabela = tabela.rowsHash();
-    gestaoCompras.cadastroConjunto(dadosTabela.nome,dadosTabela.email, dadosTabela.senha,dadosTabela.confirmar_senha)
-});
-
-When("preencho os dados de Login", (tabela) =>{
-    var dadosTabela = tabela.rowsHash();
-    gestaoCompras.loginConjunto(dadosTabela.email, dadosTabela.senha)
+    gestaoCompras.visitar();
 });
 
 When("informo os campos de criação da lista", (tabela) =>{
@@ -46,6 +13,13 @@ When("informo o nome do item com formato inválido", (tabela) =>{
     var dadosTabela = tabela.rowsHash();
     gestaoCompras.listaNome(dadosTabela.descricao, dadosTabela.nome,dadosTabela.quantidade)
 });
+
+When("informo os campos de criação da lista, o primeiro item possui 1 unidade", (tabela) =>{
+    var dadosTabela = tabela.rowsHash();
+    gestaoCompras.listaNome(dadosTabela.descricao, dadosTabela.nome,dadosTabela.quantidade)
+});
+
+
 
 // When("informo, sem a descricao, os campos de criação da lista", (tabela) =>{
 //     var dadosTabela = tabela.rowsHash();
@@ -67,21 +41,38 @@ When("informo o nome do item com número", (tabela) =>{
     gestaoCompras.listaConjunto(dadosTabela.descricao, dadosTabela.nome,dadosTabela.quantidade)
 });
 
+When("informo os campos de criação da lista, o primeiro item possui 1 unidade", (tabela) =>{
+    var dadosTabela = tabela.rowsHash();
+    gestaoCompras.listaNomeQuantidade(dadosTabela.descricao, dadosTabela.nome,dadosTabela.quantidade)
+});
+
 Then("visualizo a mensagem positiva {string}", (mensagempositiva) => {
-    cy.contains(mensagempositiva).should("be.visible");    
+    cy.contains(mensagempositiva).should("be.visible");
+    // gestaoCompras.detelarUsuario();   
 });
 
 Then("visualizo a mensagem negativa {string}", (mensagemnegativa) => {
-    cy.contains(mensagemnegativa).should("be.visible");    
+    cy.contains(mensagemnegativa).should("be.visible");
+    // gestaoCompras.detelarUsuario();    
 });
 
-Then("visualizo a mensagem de erro {string}", (mensagemErro) => {
-    gestaoCompras.verificarMensagemErro([mensagemErro]);    
+Then("visualizo a mensagem de erros {string}", (mensagemErro) => {
+    gestaoCompras.verificarMensagemErro([mensagemErro]);
+    // gestaoCompras.detelarUsuario();    
+});
+
+Then("visualizo a soma dos itens {string}", (mensagemErro) => {
+    gestaoCompras.verificarMensagemErro([mensagemErro]);
+    // gestaoCompras.detelarUsuario();    
 });
 
 Then("visualizo as demais funcionalidades do sistema", () => {
     gestaoCompras.exibePaginaCriarLista();
+    // gestaoCompras.detelarUsuario();
 });
+
+
+
 
 // And("visualizo a mensagem positiva {string}", (mensagempositiva) => {
 //     cy.contains(mensagempositiva).should("be.visible");    
