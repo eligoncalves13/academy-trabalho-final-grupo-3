@@ -20,7 +20,7 @@ After({ tags: "@deletarUsuario" }, () => {
     cy.deletarUsuario();
 });
 
-Given("acessei o sistema Lembra Compras", () => {
+Given("acessei a página de login do sistema Lembra Compras", () => {
     loginUsuarioPage.acessarLogin();
 });
 
