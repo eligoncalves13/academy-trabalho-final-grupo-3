@@ -18,12 +18,12 @@ Feature: Gestão de lista de compras
             | quantidade  | 1                        |
             Then visualizo a mensagem positiva "Lista concluída com sucesso!" 
             
-        # Scenario: Criar uma lista sem descricao, dado que ao menos um item tenha sido adicionado
-        #      When informo, sem a descricao, os campos de criação da lista
-        #      | descricao   |                          |
-        #      | nome_item   | Pastel                   |
-        #      | quantidade  | 2                        |
-        #      Then visualizo a mensagem positiva "Lista concluída com sucesso!" 
+        Scenario: Criar uma lista sem descricao, dado que ao menos um item tenha sido adicionado
+             When informo, sem a descricao, os campos de criação da lista
+             | descricao   |                          |
+             | nome        | Pastel                   |
+             | quantidade  | 2                        |
+             Then visualizo a mensagem positiva "Lista concluída com sucesso!" 
 
         Scenario Outline: A quantidade limite de um item deve ser respeitada
             When informo, desrespeitando os limites de quantidade, os campos de criação da lista
@@ -48,49 +48,27 @@ Feature: Gestão de lista de compras
                 | Mercado    | PeraUvaMaçaSaladaPeraUvaMaçaSaladaPera    |  3            |  Informe no máximo 30 caracteres       | 
                 | Natal      | T                                         |   4           |  Informe o nome do produto             |
 
-        Scenario: Adicionar item já presente na lista, desde que seja uma unidade, e depois acrescentar um novo com qualquer unidade, soma sua quantidade
+        Scenario Outline: Adicionar item já presente na lista, desde que seja uma unidade, e depois acrescentar um novo com qualquer unidade, soma sua quantidade
             When informo os campos de criação da lista, o primeiro item possui 1 unidade
             | descricao   |     <descricao>       |
             | nome        |     <nome>            |
             | quantidade  |     <quantidade>      |
-            Then visualizo a soma dos itens "4x"
+            Then visualizo a soma dos itens
             Examples: 
                 | descricao  |              nome                         | quantidade    |
-                | Ano Novo   | Peru                                      | 1             |   
+                | Ano Novo   | Peru                                      |  1            |
                 | Ano Novo   | Peru                                      |  3            |
 
-
-        # Scenario: Adicionar item já presente na lista, desde que seja uma unidade, e depois acrescentar um novo com qualquer unidade, soma sua quantidade
-        #     When informo os campos de criação da lista, o primeiro item possui 1 unidade
-        #     | descricao   | Ano Novo              |
-        #     | nome_item   | Peru                  |
-        #     | quantidade  | 1                     |
-        #     And acrescento um item com nome já presente       
-        #     | nome_item   | Peru                  |
-        #     | quantidade  | 5                     |
-        #     Then visualizo a soma dos itens
-        #     # (incluir click dos botões +)
-
-        # Scenario: Adicionar item já presente na lista, com qualquer unidade, salvar, e depois acrescentar um novo, soma sua quantidade
-        #     When informo os campos de criação da lista, o primeiro item possui 5 unidades
-        #     | descricao   | Natal                 |
-        #     | nome_item   | Peru                  |
-        #     | quantidade  | 5                     |
-        #     And salvo e acrescento um item com nome já presente       
-        #     | nome_item   | Peru                  |
-        #     | quantidade  | 5                     |
-        #     Then visualizo a soma dos itens
-        #     # (incluir click dos botões +)
-
-        # Scenario: Adicionar item já presente na lista, com o primeiro item sendo maior que uma unidade, concatena sua quantidade
-        #     When informo os campos de criação da lista, o primeiro item possui mais de 1 unidade
-        #     | descricao   | Natal                 |
-        #     | nome_item   | Peru                  |
-        #     | quantidade  | 3                     |
-        #     And acrescento um item com nome já presente       
-        #     | nome_item   | Peru                  |
-        #     | quantidade  | 4                     |
-        #     Then visualizo a concatenação dos itens
+        Scenario Outline: Adicionar item já presente na lista, com o primeiro item sendo maior que uma unidade, concatena sua quantidade
+            When informo os campos de criação da lista, o primeiro item possui mais de 1 unidade
+            | descricao   |     <descricao>       |
+            | nome        |     <nome>            |
+            | quantidade  |     <quantidade>      |
+            Then visualizo a soma dos itens 
+            Examples: 
+                | descricao  |              nome                         | quantidade    |
+                | Ano Novo   | Peru                                      |  2            |
+                | Ano Novo   | Peru                                      |  3            |
         
         Scenario: Sistema permite adicionar nome de item com número
             When informo o nome do item com número

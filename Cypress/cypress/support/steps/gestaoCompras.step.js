@@ -9,12 +9,27 @@ When("informo os campos de criação da lista", (tabela) =>{
     gestaoCompras.listaConjunto(dadosTabela.descricao, dadosTabela.nome,dadosTabela.quantidade)
 });
 
+When("informo, sem a descricao, os campos de criação da lista", (tabela) =>{
+    var dadosTabela = tabela.rowsHash();
+    gestaoCompras.listaConjuntoSemDescricao(dadosTabela.descricao, dadosTabela.nome,dadosTabela.quantidade)
+});
+
+When("informo os dados do usuário para cadastrar", (tabela) => {
+    const dadosTabela = tabela.rowsHash();
+    gestaoCompras.listaConjuntoSemDescricao(dadosTabela.descricao, dadosTabela.nome,dadosTabela.quantidade);
+});
+
 When("informo o nome do item com formato inválido", (tabela) =>{
     var dadosTabela = tabela.rowsHash();
     gestaoCompras.listaNome(dadosTabela.descricao, dadosTabela.nome,dadosTabela.quantidade)
 });
 
 When("informo os campos de criação da lista, o primeiro item possui 1 unidade", (tabela) =>{
+    var dadosTabela = tabela.rowsHash();
+    gestaoCompras.listaNome(dadosTabela.descricao, dadosTabela.nome,dadosTabela.quantidade)
+});
+
+When("informo os campos de criação da lista, o primeiro item possui mais de 1 unidade", (tabela) =>{
     var dadosTabela = tabela.rowsHash();
     gestaoCompras.listaNome(dadosTabela.descricao, dadosTabela.nome,dadosTabela.quantidade)
 });
@@ -61,14 +76,14 @@ Then("visualizo a mensagem de erros {string}", (mensagemErro) => {
     // gestaoCompras.detelarUsuario();    
 });
 
-Then("visualizo a soma dos itens {string}", (mensagemErro) => {
-    gestaoCompras.verificarMensagemErro([mensagemErro]);
-    // gestaoCompras.detelarUsuario();    
-});
+// Then("visualizo a soma dos itens {string}", (mensagemErro) => {
+//     gestaoCompras.verificarMensagemErro([mensagemErro]);
+//     // gestaoCompras.detelarUsuario();    
+// });
 
-Then("visualizo as demais funcionalidades do sistema", () => {
-    gestaoCompras.exibePaginaCriarLista();
-    // gestaoCompras.detelarUsuario();
+Then("visualizo a soma dos itens", () => {
+    cy.get('span').contains('4x - Maça') ;
+    // cy.get('p').contains('4x - Maça');
 });
 
 
