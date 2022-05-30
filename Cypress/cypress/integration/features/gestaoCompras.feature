@@ -1,29 +1,17 @@
+@cadastrarUsuarioLogin
+@deletarUsuario
+@logout
+
+
 Feature: Gestão de lista de compras
         Como um usuário com conta no sistema
         Desejo gerenciar uma lista de compras
         Para registrar os produtos que desejo comprar
 
-    Background: Acessar o sistema, efetuar login 
+    Background: Informo os dados de usuário para cadastrar e logar
         Given acessei o sistema Lembra Compras
-        And informo os dados válidos para efetuar o login
 
-        # Scenario: Preencher dados corretos
-        #     Given acessei a tela de cadastro
-        #     When preencho o formulário e salvo
-        #     | nome  | Carmem                                            |
-        #     | email | testes@oi.com                                     |
-        #     | senha | carmem                                            |
-        #     | confirmar_senha | carmem                                  |
-        #     Then visualizo a mensagem positiva "Usuário criado com sucesso!"
-
-        # Scenario: Login
-        #     Given acessei a tela de login
-        #     When preencho os dados de Login
-        #     | email | testes@oi.com                                     |
-        #     | senha | carmem                                            |
-        #     Then visualizo as demais funcionalidades do sistema 
-
-        Scenario: Criar lista com sucesso
+        Scenario: Criar lista com sucesso            
             When informo os campos de criação da lista
             | descricao   | Feirinha                 |
             | nome        | Pastel                   |
@@ -42,7 +30,7 @@ Feature: Gestão de lista de compras
             | descricao   |     <descricao>       |
             | nome        |     <nome>            |
             | quantidade  |     <quantidade>      |
-            Then visualizo a mensagem de erro "<mensagem>"
+            Then visualizo a mensagem de erros "<mensagem>"
             Examples: 
                 |       descricao               | nome            | quantidade      | mensagem                                     | 
                 |     Mercadinho                | jaca            | 0               | Informe pelo menos 1 unidade                 |
@@ -55,10 +43,21 @@ Feature: Gestão de lista de compras
             | quantidade  |     <quantidade>      |
             Then visualizo a mensagem negativa "<mensagem>"
             Examples: 
-                | descricao  |              nome                         | quantidade    |            mensagem                   | 
+                | descricao  |              nome                         | quantidade    |            mensagem                    | 
                 | Feirinha   | Ja!ca#                                    | 2             |   Formato do nome é inválido.          | 
                 | Mercado    | PeraUvaMaçaSaladaPeraUvaMaçaSaladaPera    |  3            |  Informe no máximo 30 caracteres       | 
                 | Natal      | T                                         |   4           |  Informe o nome do produto             |
+
+        Scenario: Adicionar item já presente na lista, desde que seja uma unidade, e depois acrescentar um novo com qualquer unidade, soma sua quantidade
+            When informo os campos de criação da lista, o primeiro item possui 1 unidade
+            | descricao   |     <descricao>       |
+            | nome        |     <nome>            |
+            | quantidade  |     <quantidade>      |
+            Then visualizo a soma dos itens "4x"
+            Examples: 
+                | descricao  |              nome                         | quantidade    |
+                | Ano Novo   | Peru                                      | 1             |   
+                | Ano Novo   | Peru                                      |  3            |
 
 
         # Scenario: Adicionar item já presente na lista, desde que seja uma unidade, e depois acrescentar um novo com qualquer unidade, soma sua quantidade
