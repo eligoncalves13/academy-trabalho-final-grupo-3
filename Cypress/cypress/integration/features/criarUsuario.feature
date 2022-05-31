@@ -50,7 +50,7 @@ Feature: Criar usuário
             | Raro  | raro@             | 1234  | 1234            | 
             | Raro  | raro.             | 1234  | 1234            | 
             | Raro  | raro@academy      | 1234  | 1234            | 
-            | Raro  | raro#@academy.com | 1234  | 1234            | 
+            | Raro  | raro%@academy.com | 1234  | 1234            | 
 
     Scenario: Não deve ser possível cadastrar usuário com email já existente
         When informo os dados do usuário com email já existente para cadastrar
