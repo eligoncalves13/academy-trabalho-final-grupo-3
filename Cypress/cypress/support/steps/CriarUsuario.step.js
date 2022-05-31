@@ -55,11 +55,11 @@ And("seleciono para mostrar senha", () => {
     cadastroPage.clicarMostrarConfirmarSenha();
  });
 
-Then("visualizo a mensagem de sucesso {string}", (mensagemSucesso) => {
+Then("visualizo mensagem de sucesso {string}", (mensagemSucesso) => {
     cadastroPage.verificarMensagemSucesso(mensagemSucesso);
 });
 
-Then("visualizo a mensagem de erro {string}", (mensagemErro) => {
+Then("visualizo mensagem de erro {string}", (mensagemErro) => {
     if(mensagemErro.includes(";")){
         cadastroPage.verificarMensagemErro(mensagemErro.split(';'));
     }else{
@@ -67,7 +67,7 @@ Then("visualizo a mensagem de erro {string}", (mensagemErro) => {
     };
 });
 
-Then("visualizo a mensagem de email existente {string}", (mensagemErro) => {
+Then("visualizo mensagem de email existente {string}", (mensagemErro) => {
     cadastroPage.verificarMensagemEmailExistente(mensagemErro);
 });
 
