@@ -55,7 +55,7 @@ Feature: Gestão de lista de compras
         And path "list"
         When method get 
         Then status 200
-        And match response contains read('responseLista.json')
+        And match response contains read('responseListaAtiva.json')
 
         Examples:
             | quantidade! | quantidade_novo! | 
@@ -78,7 +78,7 @@ Feature: Gestão de lista de compras
         And path "list"
         When method get 
         Then status 200
-        And match response contains read('responseLista.json')
+        And match response contains read('responseListaAtiva.json')
         
         Examples:
             | quantidade! | quantidade_novo! | 
